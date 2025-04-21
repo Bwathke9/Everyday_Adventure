@@ -9,6 +9,12 @@ _A Unity project_
 
 ### Game Play
 
+Everyday Adventure is a 2D side-scrolling platformer game developed in Unity 6 using C#. Players navigate through three levels filled with traps and obstacles,
+collecting tokens to increase their scores and competing on a global leaderboard. Each level ends with a minigame that rewards bonus points and power-ups,
+while correct answers to trivia questions can restore player health. The game is designed for Windows PCs and stores high scores in a MySQL database hosted on Google Cloud.
+The development team collaborates via GitHub with Git LFS for large asset management and aims to enhance the experience with interactive audio,
+unique level soundtracks, and potential future content.
+
 ### System Requirements
 
 ### Initial setup
