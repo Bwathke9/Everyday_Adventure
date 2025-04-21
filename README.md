@@ -48,7 +48,7 @@ A windows PC capable of running the Unity 6 engine.
 To verify server connectivity we will use tests run within the Unity Testing Environment. The included tests check that our
 connection script within the Unity client correctly calls the API on our server with both a POST and GET method.
 <ul>
-  <li>1. open the project within Unity following instructions under the Installation header</li>
+  <li>1. open the project within Unity Editor following instructions under the Installation header</li>
   <li>2. navigate to Window > General > Test Runner</li>
   <li>3. click Run All in the bottom right corner of the Test Runner page</li>
   <li>4. confirm that tests pass</li>
@@ -57,7 +57,7 @@ connection script within the Unity client correctly calls the API on our server 
 ### Usage
 The following steps describe how to build and run the project.
 <ul>
-  <li>1. open project within Unity following instructions under the Installation header</li>
+  <li>1. open project within Unity Editor following instructions under the Installation header</li>
   <li>2. navigate to File > Build Profiles</li>
   <li>3. ensure Windows is selected and click Build</li>
   <li>4. navigate to desired project build location and select the folder</li>
