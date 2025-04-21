@@ -28,11 +28,17 @@ A windows PC capable of running the Unity 6 engine.
     <li>2. install plasticscm</li>
     <li>3. log into Unity account</li>
   </ul>
+<li>Installing Git LFS</li>
+    <ul>
+        <li>1. go to https://git-lfs.com and download the correct installer for your PC</li>
+        <li>2. install Git LFS</li>
+    </ul>
   <li>Cloning the repo</li>
   <ul>
     <li>1. open gitBash</li>
     <li>2. navigate to desired repo location</li>
-    <li>3. run git clone git@github.com:Bwathke9/Everyday_Adventure.git</li>
+    <li>3. run git lfs install
+    <li>4. run git clone git@github.com:Bwathke9/Everyday_Adventure.git</li>
   </ul>
   <li>Opening the project</li>
   <ul>
