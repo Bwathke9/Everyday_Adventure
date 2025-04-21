@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/UIStyle.uss?fileID=7433441132597879392&amp;guid=9cb5e5a86095f944b9a1621deb8aa3ea&amp;type=3#UIStyle" />
+    <ui:VisualElement name="Health" style="flex-grow: 1; position: absolute; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 44px; width: 198px;" />
+    <ui:Label text="Everyday Adventure" name="Title" />
+</ui:UXML>

@@ -1,0 +1,12 @@
+VisualElement {
+}
+
+#Title {
+    font-size: 30px;
+    -unity-text-align: upper-center;
+    -unity-font-style: bold;
+    color: rgb(147, 17, 17);
+}
+
+.visualElement {
+}
