@@ -1,5 +1,24 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/UIStyle.uss?fileID=7433441132597879392&amp;guid=9cb5e5a86095f944b9a1621deb8aa3ea&amp;type=3#UIStyle" />
-    <ui:VisualElement name="Health" style="flex-grow: 1; position: absolute; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 44px; width: 198px;" />
     <ui:Label text="Everyday Adventure" name="Title" />
+    <ui:VisualElement name="topLeftVisualElement" style="flex-grow: 1; position: absolute; height: auto; min-height: 60px; max-height: 30%;">
+        <ui:VisualElement name="healthVisualElement" style="flex-grow: 1; position: relative; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: auto; width: auto; align-items: flex-start; justify-content: flex-start; flex-direction: column; align-self: flex-start;">
+            <ui:Label text="Health" name="healthLabel" style="align-items: auto; font-size: 16px; color: rgb(238, 12, 12); -unity-font-style: bold;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="pointsVisualElement" style="flex-grow: 1; align-items: auto; align-self: flex-start;">
+            <ui:Label text="Points" name="pointsLabel" style="align-items: auto; color: rgb(231, 89, 8); -unity-font-style: bold; font-size: 16px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="powerUpVisualElement" style="flex-grow: 1;">
+            <ui:Label text="Power-Up" name="powerUpLabel" style="align-items: auto; -unity-text-align: middle-left; align-content: auto; -unity-font-style: bold; font-size: 16px; color: rgb(11, 12, 219);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="topRightVisualElement" style="flex-grow: 1; position: absolute; height: auto; min-height: 60px; max-height: 30%;">
+        <ui:VisualElement name="levelVisualElement" style="flex-grow: 1; position: relative; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: auto; width: auto; align-items: flex-start; justify-content: flex-start; flex-direction: column; align-self: flex-start;">
+            <ui:Label text="Level" name="levelLabel" style="align-items: auto; font-size: 16px; color: rgb(29, 197, 12); -unity-font-style: bold;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="timerVisualElement" style="flex-grow: 1; align-items: auto; align-self: flex-start;">
+            <ui:Label text="Timer" name="timerLabel" emoji-fallback-support="false" style="align-items: auto; color: rgb(207, 8, 231); -unity-font-style: bold; font-size: 16px;" />
+        </ui:VisualElement>
+        <ui:Button text="Pause" name="pauseButton" parse-escape-sequences="false" style="color: rgb(243, 228, 228); -unity-text-outline-color: rgba(0, 0, 0, 0.99); -unity-text-outline-width: 0.5px; -unity-font-style: bold; background-color: rgba(27, 38, 195, 0.99); border-left-color: rgb(238, 235, 235); border-right-color: rgb(238, 235, 235); border-top-color: rgb(238, 235, 235); border-bottom-color: rgb(238, 235, 235); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; background-position-x: left 0; background-position-y: top 0; -unity-background-scale-mode: stretch-to-fill; background-size: 100% 75%;" />
+    </ui:VisualElement>
 </ui:UXML>
