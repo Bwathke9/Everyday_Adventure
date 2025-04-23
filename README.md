@@ -23,25 +23,25 @@ A windows PC capable of running the Unity 6 engine.
     <li>Download  & Install Unity Hub</li>
     <li>Download Unity 6000.0.46f1</li>
   <li>Installing plasticSCM</li>
-  <ol>
+  <ol type="1">
     <li> go to https://plasticscm.com/download and download the correct file for your operating system</li>
     <li> install plasticscm</li>
     <li> log into Unity account</li>
   </ol>
 <li>Installing Git LFS</li>
-    <ol>
+    <ol type="1">
         <li> go to https://git-lfs.com and download the correct installer for your PC</li>
         <li> install Git LFS</li>
     </ol>
   <li>Cloning the repo</li>
-  <ol>
+  <ol type="1">
     <li> open gitBash</li>
     <li> navigate to desired repo location</li>
     <li> run git lfs install
     <li> run git clone git@github.com:Bwathke9/Everyday_Adventure.git</li>
   </ol>
   <li>Opening the project</li>
-  <ol>
+  <ol type="1">
     <li> open Unity Hub</li>
     <li> click Add > Add project from disk</li>
     <li> navigate to folder containing the repo and select it</li>
@@ -53,7 +53,7 @@ A windows PC capable of running the Unity 6 engine.
 
 To verify server connectivity we will use tests run within the Unity Testing Environment. The included tests check that our
 connection script within the Unity client correctly calls the API on our server with both a POST and GET method.
-<ol>
+<ol type="1">
   <li> open the project within Unity Editor following instructions under the Installation header</li>
   <li> navigate to Window > General > Test Runner</li>
   <li> click Run All in the bottom right corner of the Test Runner page</li>
@@ -62,7 +62,7 @@ connection script within the Unity client correctly calls the API on our server 
 
 ### Usage
 The following steps describe how to build and run the project.
-<ol>
+<ol type="1">
   <li> open project within Unity Editor following instructions under the Installation header</li>
   <li> navigate to File > Build Profiles</li>
   <li> ensure Windows is selected and click Build</li>
