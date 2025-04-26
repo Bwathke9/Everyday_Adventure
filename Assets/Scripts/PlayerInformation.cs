@@ -1,5 +1,6 @@
 // By Adam Nixdorf
 // This script is designed to track player information
+using System;
 using UnityEngine;
 
 public class PlayerInformation : MonoBehaviour
@@ -13,7 +14,7 @@ public class PlayerInformation : MonoBehaviour
     public float timer;
     public float powerUp;
     public string timeDisplay;
-
+    int lastSecond = -5;
     public bool isPaused = false;
 
     void Awake()
@@ -38,14 +39,27 @@ public class PlayerInformation : MonoBehaviour
 
     void Update()
     {
-        SetHealth();
-
+       
         if (!isPaused)
         {
             timer += Time.deltaTime;
             timeDisplay = DisplayTime(timer);
         }
 
+    }
+
+    private void SetPowerUp(int v)
+    {
+       float randomPower = UnityEngine.Random.Range(0f, v);
+        if (powerUp > 0)
+        {
+            powerUp -= randomPower;
+        }
+        else
+        {
+            powerUp += randomPower;
+        }
+        powerUp = Mathf.Clamp(powerUp, 0, 100);
     }
 
     public string DisplayTime(float timer)
@@ -55,11 +69,34 @@ public class PlayerInformation : MonoBehaviour
         float seconds = Mathf.FloorToInt(timer % 60);
         float milliseconds = (timer * 1000) % 1000;
         int secondsNow = Mathf.FloorToInt(seconds);
-        int lastSecond = -5;
+        
         if (secondsNow == 35 && lastSecond != 35)
         {
+            SetHealth(45);
+            SetPowerUp(45);
             score += 1;
             lastSecond = 35;
+        }
+        else if (secondsNow == 45 && lastSecond != 45)
+        {
+            SetHealth(45);
+            SetPowerUp(45);
+            score += 1;
+            lastSecond = 45;
+        }
+        else if (secondsNow == 55 && lastSecond != 55)
+        {
+            SetHealth(45);
+            SetPowerUp(45);
+            score += 1;
+            lastSecond = 55;
+        }
+        else if (secondsNow == 60 && lastSecond != 60)
+        {
+            SetHealth(45);
+            SetPowerUp(45);
+            score += 1;
+            lastSecond = 60;
         }
         string timeDisplay = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
         return timeDisplay;
@@ -80,8 +117,19 @@ public class PlayerInformation : MonoBehaviour
             //GameOver();
         }
     }
-    private void SetHealth()
+    private void SetHealth(float damage)
     {
+        // randomly select a number between 0 and the damage amount 
+        float randomDamage = UnityEngine.Random.Range(0f, damage);
+        if ( currentHealth > 0)
+        {
+            currentHealth -= randomDamage;
+        }
+        else
+        {
+            currentHealth += randomDamage;
+        }
+
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 
