@@ -1,23 +1,22 @@
-using UnityEditor;
+// By Adam Nixdorf
+// This script is designed to track player information
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerInformation : MonoBehaviour
 {
-    public PlayerInformation control;
-    public int currentHealth;
-    public int maxHealth = 5;
+    public static PlayerInformation control;
+
+    public float currentHealth;
+    public float maxHealth = 100;
     public int score;
     public int level;
-    public float powerUp;
     public float timer;
-    private GUIStyle titlePage = new GUIStyle();
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
+    public float powerUp;
+    public string timeDisplay;
 
+    public bool isPaused = false;
 
-
-    void Awake ()
+    void Awake()
     {
         if (control == null)
         {
@@ -28,40 +27,43 @@ public class PlayerInformation : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
-    }
-    void Start()
-    {
-        currentHealth = maxHealth;
-        score = 0;
-        
-    }
-    private void OnGUI()
-    {
-       
 
-        titlePage.fontSize = 50;
-        titlePage.normal.textColor = Color.red;
-        titlePage.fontStyle = FontStyle.Bold;
-        titlePage.alignment = TextAnchor.UpperCenter;
-        for (int i = 0; i <= maxHealth; i++)
+        currentHealth = maxHealth;
+        score = 50;
+        level = 1;
+        powerUp = 55;
+        timeDisplay = "00:00:000";
+    }
+
+
+    void Update()
+    {
+        SetHealth();
+
+        if (!isPaused)
         {
-            if (i < currentHealth)
-            {
-                GUI.DrawTexture(new Rect(50 + (i * 15), 10, 40, 40), fullHeart.texture);
-            }
-            else if (i >= currentHealth)
-            {
-                GUI.DrawTexture(new Rect(20 + (i * 10), 10, 40, 40), emptyHeart.texture);
-            }
+            timer += Time.deltaTime;
+            timeDisplay = DisplayTime(timer);
         }
-        GUI.Label(new Rect(10, 10, 100, 50), "Health: " );
-        GUI.Label(new Rect(10, 30, 100, 50), "Score: " + score);
-        GUI.Label(new Rect(10, 50, 100, 50), "Power-Up: " + score);
-        GUI.Label(new Rect(325, 10, 200, 100), "Everyday Adventure", titlePage);
-        GUI.Label(new Rect(750, 10, 100, 50), "Level: " + level);
-        GUI.Label(new Rect(750, 30, 100, 50), "Timer: " + timer);
-        GUI.Button(new Rect(750, 50, 100, 40), "Pause");
+
+    }
+
+    public string DisplayTime(float timer)
+
+    {
+        float minutes = Mathf.FloorToInt(timer / 60);
+        float seconds = Mathf.FloorToInt(timer % 60);
+        float milliseconds = (timer * 1000) % 1000;
+        int secondsNow = Mathf.FloorToInt(seconds);
+        int lastSecond = -5;
+        if (secondsNow == 35 && lastSecond != 35)
+        {
+            score += 1;
+            lastSecond = 35;
+        }
+        string timeDisplay = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        return timeDisplay;
+
     }
 
     public void Heal()
@@ -80,51 +82,7 @@ public class PlayerInformation : MonoBehaviour
     }
     private void SetHealth()
     {
-        currentHealth = Mathf.Clamp(currentHealth, 0, 5);
-
-       
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 
-    //public void UpdateHearts()
-    //{
-    //    SetHeartContainers();
-    //    SetFilledHearts();
-    //}
-
-    //private void SetHeartContainers()
-    //{
-    //    for (int i = 0; i < heartContainers.Length; i++)
-    //    {
-    //        if (i < 5)
-    //        {
-    //            heartContainers[i].SetActive(true);
-    //        }
-    //        else
-    //        {
-    //            heartContainers[i].SetActive(false);
-    //        }
-    //    }
-    //}
-    //private void SetFilledHearts()
-    //{
-    //    for (int i = 0; i < heartFills.Length; i++)
-    //    {
-    //        if (i < currentHealth)
-    //        {
-    //            heartFills[i].fillAmount = 1;
-    //        }
-    //        else
-    //        {
-    //            heartFills[i].fillAmount = 0;
-    //        }
-    //    }
-    //    if (health % 1 != 0)
-    //    {
-    //        int lastPos = Mathf.FloorToInt(health);
-    //        heartFills[lastPos].fillAmount = health - lastPos;
-    //    }
-    //}
-
-  
-    
 }

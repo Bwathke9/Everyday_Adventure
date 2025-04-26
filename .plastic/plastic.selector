@@ -1,4 +1,0 @@
-repository "Everyday_Adventure 2025-04-21_09-18-46/Everyday_Adventure@2475575244841@cloud"
-  path "/"
-    br "/main"
-    co "/main"
