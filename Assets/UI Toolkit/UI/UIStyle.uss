@@ -7,6 +7,7 @@
     align-self: center;
     -unity-text-outline-width: 2px;
     -unity-text-outline-color: rgba(6, 7, 142, 0.99);
+    -unity-font-definition: url("project://database/Assets/Simple%20Fantasy%20GUI/Font/MedievalSharp.ttf?fileID=12800000&guid=dab90a45cedf47b4291bd9816c597551&type=3#MedievalSharp");
 }
 
 #topLeftVisualElement {
@@ -20,7 +21,23 @@
     max-width: 30%;
     align-content: auto;
     justify-content: space-around;
-    background-image: url("project://database/Assets/Pixel%20Adventure%201/Assets/Background/Gray.png?fileID=2800000&guid=ffc80c129c9aca14c9fb4dbeba0e10d2&type=3#Gray");
+    background-image: url("project://database/Assets/Simple%20Fantasy%20GUI/PNG/Character%20Panel/Character_Box.png?fileID=2800000&guid=81c655d952ad6ca498cc4b1491740ee0&type=3#Character_Box");
+    background-position-x: left 0;
+    background-position-y: top 0;
+    -unity-background-scale-mode: scale-and-crop;
+    background-size: 120% 120%;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left-color: rgba(0, 0, 0, 0.98);
+    border-right-color: rgba(0, 0, 0, 0.98);
+    border-top-color: rgba(0, 0, 0, 0.98);
+    border-bottom-color: rgba(0, 0, 0, 0.98);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    -unity-font-definition: url("project://database/Assets/Simple%20Fantasy%20GUI/Font/MedievalSharp.ttf?fileID=12800000&guid=dab90a45cedf47b4291bd9816c597551&type=3#MedievalSharp");
 }
 
 #topRightVisualElement {
@@ -36,6 +53,21 @@
     justify-content: space-around;
     position: absolute;
     right: 0;
+    border-left-color: rgba(0, 0, 0, 0.99);
+    border-right-color: rgba(0, 0, 0, 0.99);
+    border-top-color: rgba(0, 0, 0, 0.99);
+    border-bottom-color: rgba(0, 0, 0, 0.99);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-image: url("project://database/Assets/Simple%20Fantasy%20GUI/PNG/Character%20Panel/Character_Box.png?fileID=2800000&guid=81c655d952ad6ca498cc4b1491740ee0&type=3#Character_Box");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-size: 120% 120%;
+    -unity-font-definition: url("project://database/Assets/Simple%20Fantasy%20GUI/Font/MedievalSharp.ttf?fileID=12800000&guid=dab90a45cedf47b4291bd9816c597551&type=3#MedievalSharp");
 }
 
 .VisualElement {
