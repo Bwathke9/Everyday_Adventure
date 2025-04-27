@@ -1,23 +1,23 @@
-using UnityEditor;
+// By Adam Nixdorf
+// This script is designed to track player information
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerInformation : MonoBehaviour
 {
-    public PlayerInformation control;
-    public int currentHealth;
-    public int maxHealth = 5;
+    public static PlayerInformation control;
+
+    public float currentHealth;
+    public float maxHealth = 100;
     public int score;
     public int level;
-    public float powerUp;
     public float timer;
-    private GUIStyle titlePage = new GUIStyle();
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
+    public float powerUp;
+    public string timeDisplay;
+    int lastSecond = -5;
+    public bool isPaused = false;
 
-
-
-    void Awake ()
+    void Awake()
     {
         if (control == null)
         {
@@ -28,40 +28,79 @@ public class PlayerInformation : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
-    }
-    void Start()
-    {
+
         currentHealth = maxHealth;
-        score = 0;
-        
+        score = 50;
+        level = 1;
+        powerUp = 55;
+        timeDisplay = "00:00:000";
     }
-    private void OnGUI()
+
+
+    void Update()
     {
        
-
-        titlePage.fontSize = 50;
-        titlePage.normal.textColor = Color.red;
-        titlePage.fontStyle = FontStyle.Bold;
-        titlePage.alignment = TextAnchor.UpperCenter;
-        for (int i = 0; i <= maxHealth; i++)
+        if (!isPaused)
         {
-            if (i < currentHealth)
-            {
-                GUI.DrawTexture(new Rect(50 + (i * 15), 10, 40, 40), fullHeart.texture);
-            }
-            else if (i >= currentHealth)
-            {
-                GUI.DrawTexture(new Rect(20 + (i * 10), 10, 40, 40), emptyHeart.texture);
-            }
+            timer += Time.deltaTime;
+            timeDisplay = DisplayTime(timer);
         }
-        GUI.Label(new Rect(10, 10, 100, 50), "Health: " );
-        GUI.Label(new Rect(10, 30, 100, 50), "Score: " + score);
-        GUI.Label(new Rect(10, 50, 100, 50), "Power-Up: " + score);
-        GUI.Label(new Rect(325, 10, 200, 100), "Everyday Adventure", titlePage);
-        GUI.Label(new Rect(750, 10, 100, 50), "Level: " + level);
-        GUI.Label(new Rect(750, 30, 100, 50), "Timer: " + timer);
-        GUI.Button(new Rect(750, 50, 100, 40), "Pause");
+
+    }
+
+    private void SetPowerUp(int v)
+    {
+       float randomPower = UnityEngine.Random.Range(0f, v);
+        if (powerUp > 0)
+        {
+            powerUp -= randomPower;
+        }
+        else
+        {
+            powerUp += randomPower;
+        }
+        powerUp = Mathf.Clamp(powerUp, 0, 100);
+    }
+
+    public string DisplayTime(float timer)
+
+    {
+        float minutes = Mathf.FloorToInt(timer / 60);
+        float seconds = Mathf.FloorToInt(timer % 60);
+        float milliseconds = (timer * 1000) % 1000;
+        int secondsNow = Mathf.FloorToInt(seconds);
+        
+        if (secondsNow == 35 && lastSecond != 35)
+        {
+            SetHealth(45);
+            SetPowerUp(45);
+            score += 1;
+            lastSecond = 35;
+        }
+        else if (secondsNow == 45 && lastSecond != 45)
+        {
+            SetHealth(45);
+            SetPowerUp(45);
+            score += 1;
+            lastSecond = 45;
+        }
+        else if (secondsNow == 55 && lastSecond != 55)
+        {
+            SetHealth(45);
+            SetPowerUp(45);
+            score += 1;
+            lastSecond = 55;
+        }
+        else if (secondsNow == 60 && lastSecond != 60)
+        {
+            SetHealth(45);
+            SetPowerUp(45);
+            score += 1;
+            lastSecond = 60;
+        }
+        string timeDisplay = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        return timeDisplay;
+
     }
 
     public void Heal()
@@ -78,53 +117,20 @@ public class PlayerInformation : MonoBehaviour
             //GameOver();
         }
     }
-    private void SetHealth()
+    private void SetHealth(float damage)
     {
-        currentHealth = Mathf.Clamp(currentHealth, 0, 5);
+        // randomly select a number between 0 and the damage amount 
+        float randomDamage = UnityEngine.Random.Range(0f, damage);
+        if ( currentHealth > 0)
+        {
+            currentHealth -= randomDamage;
+        }
+        else
+        {
+            currentHealth += randomDamage;
+        }
 
-       
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 
-    //public void UpdateHearts()
-    //{
-    //    SetHeartContainers();
-    //    SetFilledHearts();
-    //}
-
-    //private void SetHeartContainers()
-    //{
-    //    for (int i = 0; i < heartContainers.Length; i++)
-    //    {
-    //        if (i < 5)
-    //        {
-    //            heartContainers[i].SetActive(true);
-    //        }
-    //        else
-    //        {
-    //            heartContainers[i].SetActive(false);
-    //        }
-    //    }
-    //}
-    //private void SetFilledHearts()
-    //{
-    //    for (int i = 0; i < heartFills.Length; i++)
-    //    {
-    //        if (i < currentHealth)
-    //        {
-    //            heartFills[i].fillAmount = 1;
-    //        }
-    //        else
-    //        {
-    //            heartFills[i].fillAmount = 0;
-    //        }
-    //    }
-    //    if (health % 1 != 0)
-    //    {
-    //        int lastPos = Mathf.FloorToInt(health);
-    //        heartFills[lastPos].fillAmount = health - lastPos;
-    //    }
-    //}
-
-  
-    
 }
