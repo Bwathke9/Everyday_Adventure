@@ -7,6 +7,7 @@ using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 using System.Collections;
 using System.Threading;
+using UnityEngine.SceneManagement;
 
 public class UIMain : MonoBehaviour
 {
@@ -83,7 +84,9 @@ public class UIMain : MonoBehaviour
         pauseWindow.style.display = DisplayStyle.None;
         pauseButton.clicked += TogglePopUp;
         resumeButton.clicked += TogglePopUp;
-        mainMenuButton.clicked += TogglePopUp;
+        
+        mainMenuButton.clicked += () => SceneManager.LoadScene("MainMenu");
+        
 
         scoreOut = new Label();
         levelOut = new Label();
