@@ -1,3 +1,4 @@
+// Brennan Wathke 4/19/2025 Server Connection Tests
 using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class GameDataControllerTests : MonoBehaviour
         int level_score = 100;
         int questions_answered = 5;
         string initials = "ABC";
+
         bool isSuccess = false;
         string resultMessage = "";
 
