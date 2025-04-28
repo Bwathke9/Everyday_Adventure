@@ -47,7 +47,8 @@ public class PlayerInformation : MonoBehaviour
         }
 
     }
-
+    // This function is called when the player collects a power-up
+    // todo: add a powerUp system
     private void SetPowerUp(int v)
     {
        float randomPower = UnityEngine.Random.Range(0f, v);
@@ -102,12 +103,12 @@ public class PlayerInformation : MonoBehaviour
         return timeDisplay;
 
     }
-
+    // This function is called when the player is healed
     public void Heal()
     {
         currentHealth = maxHealth;
     }
-
+    // This function is called when the player takes damage
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -132,5 +133,9 @@ public class PlayerInformation : MonoBehaviour
 
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
-
+    // This function is called when the player collects a power-up
+    public void SetScore(int score)
+    {
+        this.score = score;
+    }
 }
