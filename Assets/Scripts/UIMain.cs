@@ -1,6 +1,6 @@
 // By Adam Nixdorf
 // This script is designed to display player information
-using log4net.Core;
+
 using System;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
