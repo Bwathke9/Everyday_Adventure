@@ -26,6 +26,8 @@ public class Item : MonoBehaviour
         }
         // add score to player Adam Nixdorf
         PlayerInformation.control.SetScore (10);
+
+        Destroy(gameObject);
     }
 
 }
