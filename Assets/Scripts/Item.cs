@@ -24,6 +24,8 @@ public class Item : MonoBehaviour
         {
             isCollected = true;
         }
+        // add score to player Adam Nixdorf
+        PlayerInformation.control.SetScore (10);
     }
 
 }
