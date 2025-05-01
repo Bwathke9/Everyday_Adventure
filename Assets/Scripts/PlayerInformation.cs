@@ -17,6 +17,8 @@ public class PlayerInformation : MonoBehaviour
     
     public bool isPaused = false;
 
+    private Animator myAnim;
+
     void Awake()
     {
         if (control == null)
@@ -36,6 +38,11 @@ public class PlayerInformation : MonoBehaviour
         timeDisplay = "00:00:000";
     }
 
+    void Start()
+    {
+        myAnim = GetComponent<Animator>();
+    }
+
 
     void Update()
     {
@@ -45,7 +52,6 @@ public class PlayerInformation : MonoBehaviour
             timer += Time.deltaTime;
             timeDisplay = DisplayTime(timer);
         }
-
     }
     // This function is called when the player collects a power-up
     // todo: add a powerUp system
@@ -117,6 +123,7 @@ public class PlayerInformation : MonoBehaviour
             this.currentHealth = 0;
             //GameOver();
         }
+        myAnim.SetTrigger("Hurt");
 
     }
     public void SetHealth(float damage)

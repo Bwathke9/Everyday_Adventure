@@ -78,34 +78,41 @@ namespace EthanTheHero
             #region HURT&DEATH
 
             //Set hurt animation 
-            // if (Input.GetKeyDown(KeyCode.H))
-            // {
-            //     myAnim.SetTrigger(hurt);
-            //     myBody.linearVelocity = new Vector2(0f, 0f);
-            // }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                myAnim.SetTrigger(hurt);
+                myBody.linearVelocity = new Vector2(0f, 0f);
+            }
 
-            // if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
-            // {
-            //     if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
-            //         myAnim.SetTrigger(hurtEnded);
-            // }
+            if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
+            {
+                if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+                    myAnim.SetTrigger(hurtEnded);
+            }
 
-            //Set death animation
-            // if (Input.GetKeyDown(KeyCode.X))
-            // {
-            //     myAnim.SetTrigger(death);
-            //     myBody.linearVelocity = new Vector2(0f, 0f);
-            // }
-
-            // if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
-            // {
-            //     if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
-            //         myAnim.SetTrigger(deathEnded);
-            // }
+            // Set death animation
+            if (PlayerInformation.control.currentHealth <= 0 && !myAnim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+            {
+                myAnim.SetTrigger(death);
+                myBody.linearVelocity = new Vector2(0f, 0f);
+                StartCoroutine(HandleDeath());
+            }
 
             #endregion
         }
-
+            private IEnumerator HandleDeath()
+            {
+            while (!myAnim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+            {
+                yield return null;
+            }
+            while (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Death") && 
+                   myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f) 
+            {
+                yield return null;
+            }
+            Destroy(gameObject);
+            }
     }
 }
 
