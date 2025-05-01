@@ -2,6 +2,7 @@
 // This script is designed to track player information
 using System;
 using UnityEngine;
+using System.Collections;
 
 public class PlayerInformation : MonoBehaviour
 {
@@ -14,8 +15,10 @@ public class PlayerInformation : MonoBehaviour
     public float timer;
     public float powerUp;
     public string timeDisplay;
+    public Transform respawnPoint;
     
     public bool isPaused = false;
+    public bool isDead = false;
 
     private Animator myAnim;
 
@@ -51,6 +54,10 @@ public class PlayerInformation : MonoBehaviour
         {
             timer += Time.deltaTime;
             timeDisplay = DisplayTime(timer);
+            CheckHealth();
+        }
+        if (Input.GetKeyDown(KeyCode.H)) {
+            TakeDamage(10);
         }
     }
     // This function is called when the player collects a power-up
@@ -67,6 +74,34 @@ public class PlayerInformation : MonoBehaviour
             powerUp += randomPower;
         }
         powerUp = Mathf.Clamp(powerUp, 0, 100);
+    }
+
+    // Used to check if player has died
+    private void CheckHealth() {
+        if (currentHealth <= 0 && !isDead) {
+            isDead = true;
+            StartCoroutine(RespawnDelay(1.4f));
+        }
+    }
+
+    // Delaying player respawn
+    private IEnumerator RespawnDelay(float delay) {
+        myAnim.SetTrigger("Death");
+        yield return new WaitForSeconds(delay);
+        Respawn();
+    }
+
+    // Respawning player
+    private void Respawn() {
+        currentHealth = maxHealth;
+
+        if (respawnPoint != null) {
+        transform.position = respawnPoint.position;
+        isDead = false;
+        }
+        else {
+            Debug.LogWarning("Need to set respawnPoint");
+        }
     }
 
     public string DisplayTime(float timer)
