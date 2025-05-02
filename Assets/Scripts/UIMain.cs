@@ -111,10 +111,12 @@ public class UIMain : MonoBehaviour
         if (PlayerInformation.control.isPaused == true)
         {
             PlayerInformation.control.isPaused = false;
+            Time.timeScale = 1;
         }
         else
         {
             PlayerInformation.control.isPaused = true;
+            Time.timeScale = 0;
         }
     }
 
