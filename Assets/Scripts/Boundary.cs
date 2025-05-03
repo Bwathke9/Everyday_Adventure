@@ -1,3 +1,7 @@
+// By Adam Nixdorf
+
+// This script is designed to supply a boundary for the player 
+
 using UnityEngine;
 
 public class Boundary : MonoBehaviour
