@@ -29,17 +29,28 @@ public class HealthQuestion : MonoBehaviour
 
     private void Start()
     {
-        //healthQuiz = GetComponent<UIDocument>();
-        healthVisualElement = healthQuiz.rootVisualElement;
-        challengeQuestion = healthVisualElement.Q<Label>(challengeQuestionName);
-        answerA = healthVisualElement.Q<Button>(answerAName);
-        answerB = healthVisualElement.Q<Button>(answerBName);
-        answerC = healthVisualElement.Q<Button>(answerCName);
-        answerD = healthVisualElement.Q<Button>(answerDName);
+        if (healthQuiz == null)
+        {
+            healthQuiz = GetComponent<UIDocument>();
+        }
+        if (healthQuiz == null)
+        {
+            Debug.LogError("HealthQuiz UIDocument is not assigned.");
+            return;
+        }
+        healthVisualElement = healthQuiz.rootVisualElement.Q<VisualElement>(healthVisualElementName);
+        //challengeQuestion = healthVisualElement.Q<Label>(challengeQuestionName);
+        //answerA = healthVisualElement.Q<Button>(answerAName);
+        //answerB = healthVisualElement.Q<Button>(answerBName);
+        //answerC = healthVisualElement.Q<Button>(answerCName);
+        //answerD = healthVisualElement.Q<Button>(answerDName);
+        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
+    
     {
+        Debug.Log("Collision detected with " + collision.gameObject.name);
         ToggleHealtChallenge();
     }
 
