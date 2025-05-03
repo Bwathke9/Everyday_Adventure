@@ -1,0 +1,49 @@
+.VisualElement {
+    align-items: stretch;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    display: flex;
+}
+
+#healthRestoreTitle {
+    font-size: 175%;
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Fonts/Future%20TimeSplitters.otf?fileID=12800000&guid=41871a1504f2a2e449bf5129b26692d0&type=3#Future TimeSplitters");
+    -unity-font-style: bold;
+    align-self: center;
+    color: rgb(110, 90, 67);
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    -unity-text-align: upper-center;
+    text-overflow: ellipsis;
+}
+
+.label {
+    justify-content: space-between;
+    align-self: stretch;
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+}
+
+.button {
+    flex-direction: row;
+    align-content: stretch;
+    background-image: url("project://database/Assets/Fantasy%20Wooden%20GUI/normal_ui_set%20A/TextBTN_Big.png?fileID=2800000&guid=2be7b70e984b51444aca9c12ae4723a7&type=3#TextBTN_Big");
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Fonts/BMYEONSUNG_ttf.ttf?fileID=12800000&guid=ee9e312b956c7df4186ade92cf957db7&type=3#BMYEONSUNG_ttf");
+    font-size: 18px;
+    color: rgb(217, 185, 145);
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    min-width: 200px;
+}
