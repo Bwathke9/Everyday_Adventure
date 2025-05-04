@@ -1,18 +1,39 @@
 // Brennan Wathke 4/19/2025 Server Connection Script
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using UnityEngine.UI;
 
 public class GameDataController : MonoBehaviour
 {
     private string apiUrl = "https://ea1.djbean.net/api.php";
     private string key = "hash";
+    public Text scoreList;
 
     public event System.Action<bool, string> OnPostGameDataResult;
     public event System.Action<bool, string> OnGetGameDataResult;
+
+    [System.Serializable]
+    public class ScoreEntry
+    {
+    public string initials;
+    public string level_time;
+    public int level_score;
+    }
+
+    private void Start() 
+    {
+        GetTopScores();
+    }
+
+    private void GetTopScores() 
+    {
+        StartCoroutine(LoadTopScores());
+    }
 
     // Create hashed key
     private string CreateHash(string data)
@@ -102,6 +123,44 @@ public class GameDataController : MonoBehaviour
                 Debug.Log("Received: " + www.downloadHandler.text);
                 OnGetGameDataResult?.Invoke(true, www.downloadHandler.text);
             }
+        }
+    }
+
+    // Retrieve top 10 scores
+    private IEnumerator LoadTopScores() {
+
+    string apiKey = CreateHash(key + "level_three");
+    string apiUrlWithEndpoint = apiUrl + "?endpoint=topScores&apiKey=" + apiKey;
+
+    using (UnityWebRequest www = UnityWebRequest.Get(apiUrlWithEndpoint)) {
+
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success) {
+            Debug.LogError("Error: " + www.error);
+            OnGetGameDataResult?.Invoke(false, www.error);
+
+        } else {
+            Debug.Log("Received: " + www.downloadHandler.text);
+            OnGetGameDataResult?.Invoke(true, www.downloadHandler.text);
+            DisplayTopScores(www.downloadHandler.text);
+            }
+        }
+    }
+
+        private void DisplayTopScores(string jsonResponse)
+    {
+        var topScores = JsonConvert.DeserializeObject<List<ScoreEntry>>(jsonResponse);
+        StringBuilder scoreListBuilder = new StringBuilder();
+
+        foreach (var score in topScores)
+        {
+            scoreListBuilder.AppendLine($"{score.initials} | {score.level_time} | Score: {score.level_score}");
+        }
+
+        if (scoreList != null)
+        {
+            scoreList.text = scoreListBuilder.ToString();
         }
     }
 }
