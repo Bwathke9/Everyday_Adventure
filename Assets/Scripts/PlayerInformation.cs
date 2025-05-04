@@ -35,7 +35,7 @@ public class PlayerInformation : MonoBehaviour
         }
 
         currentHealth = maxHealth;
-        score = 50;
+        score = 0;
         level = 1;
         powerUp = 55;
         timeDisplay = "00:00:000";
