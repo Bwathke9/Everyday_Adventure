@@ -111,35 +111,7 @@ public class PlayerInformation : MonoBehaviour
         float seconds = Mathf.FloorToInt(timer % 60);
         float milliseconds = (timer * 1000) % 1000;
         int secondsNow = Mathf.FloorToInt(seconds);
-        // test info for debugging health, power-up, and score
-        //if (secondsNow == 35 && lastSecond != 35)
-        //{
-        //    SetHealth(45);
-        //    SetPowerUp(45);
-        //    score += 1;
-        //    lastSecond = 35;
-        //}
-        //else if (secondsNow == 45 && lastSecond != 45)
-        //{
-        //    SetHealth(45);
-        //    SetPowerUp(45);
-        //    score += 1;
-        //    lastSecond = 45;
-        //}
-        //else if (secondsNow == 55 && lastSecond != 55)
-        //{
-        //    SetHealth(45);
-        //    SetPowerUp(45);
-        //    score += 1;
-        //    lastSecond = 55;
-        //}
-        //else if (secondsNow == 60 && lastSecond != 60)
-        //{
-        //    SetHealth(45);
-        //    SetPowerUp(45);
-        //    score += 1;
-        //    lastSecond = 60;
-        //}
+       
         string timeDisplay = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
         return timeDisplay;
 
@@ -163,16 +135,7 @@ public class PlayerInformation : MonoBehaviour
     }
     public void SetHealth(float damage)
     {
-        // randomly select a number between 0 and the damage amount 
-        //float randomDamage = UnityEngine.Random.Range(0f, damage);
-        //if ( currentHealth > 0)
-        //{
-        //    currentHealth -= randomDamage;
-        //}
-        //else
-        //{
-        //    currentHealth += randomDamage;
-        //}
+       
         currentHealth -= damage;
 
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);

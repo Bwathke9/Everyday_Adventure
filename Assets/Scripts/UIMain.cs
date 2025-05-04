@@ -108,16 +108,7 @@ public class UIMain : MonoBehaviour
         bool isVisible = pauseWindow.style.display == DisplayStyle.Flex;
         pauseWindow.style.display = isVisible ? DisplayStyle.None : DisplayStyle.Flex;
 
-        if (PlayerInformation.control.isPaused == true)
-        {
-            PlayerInformation.control.isPaused = false;
-            Time.timeScale = 1;
-        }
-        else
-        {
-            PlayerInformation.control.isPaused = true;
-            Time.timeScale = 0;
-        }
+        PauseGame.pauseResumeGame();
     }
 
     void Update()
