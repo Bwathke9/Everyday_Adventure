@@ -81,14 +81,17 @@ public class HealthQuestion : MonoBehaviour
         }
         Debug.Log("JSON file found: " + jsonFile.name);
         // Deserialize the JSON file into a QuestionList object
-        Question[] questionArray =JsonHelper.FromJson<Question>(jsonFile.text);
-        // Convert the array to a list
-        for (int i = 0; i < questionArray.Length; i++)
+        QuestionList questionList = JsonUtility.FromJson<QuestionList>(jsonFile.text);
+        if (questionList == null || questionList.questions == null)
         {
-            Debug.Log("Question " + i + ": " + questionArray[i].questionText);
+            Debug.LogError("Failed to deserialize JSON file.");
+            return;
         }
-        questions = new List<Question>(questionArray);
-
+        questions = questionList.questions;
+        for (int i = 0; i < questions.Count; i++)
+        {
+            Debug.Log("Question " + i + ": " + questions[i].questionText);
+        }
     }
     private void SetQuestion()
     {
@@ -100,6 +103,8 @@ public class HealthQuestion : MonoBehaviour
         string answerC;
         string answerD;
         int correctAnswerIndex;
+        
+
         // get a random question from the list
         int randomIndex = UnityEngine.Random.Range(0, questions.Count);
         Debug.Log("Random index: " + randomIndex);
@@ -119,31 +124,62 @@ public class HealthQuestion : MonoBehaviour
         buttonB.text = answerB;
         buttonC.text = answerC;
         buttonD.text = answerD;
-        // Add click event listeners to the buttons 
-        buttonA.RegisterCallback<ClickEvent>(e => OnAnswerSelected("A"));
-        buttonB.RegisterCallback<ClickEvent>(e => OnAnswerSelected("B"));
-        buttonC.RegisterCallback<ClickEvent>(e => OnAnswerSelected("C"));
-        buttonD.RegisterCallback<ClickEvent>(e => OnAnswerSelected("D"));
 
+      
+
+        // Add click event listeners to the buttons 
+        buttonA.RegisterCallback<ClickEvent>(e => OnAnswerSelected("A", correctAnswerIndex));
+        buttonB.RegisterCallback<ClickEvent>(e => OnAnswerSelected("B", correctAnswerIndex));
+        buttonC.RegisterCallback<ClickEvent>(e => OnAnswerSelected("C", correctAnswerIndex));
+        buttonD.RegisterCallback<ClickEvent>(e => OnAnswerSelected("D", correctAnswerIndex));
+
+        
 
     }
 
-    private void OnAnswerSelected(string v)
+    private void OnAnswerSelected(string answer, int correctAnswerIndex)
     {
-        if (v == "A")
+        string correctAnswer = "";
+        // Set the correct answer index
+        // Store the correct answer index in a variable
+        switch (correctAnswerIndex)
+        {
+            case 0:
+                correctAnswer = "A";
+                break;
+            case 1:
+                correctAnswer = "B";
+                break;
+            case 2:
+                correctAnswer = "C";
+                break;
+            case 3:
+                correctAnswer = "D";
+                break;
+            default:
+                Debug.LogError("Invalid correct answer index: " + correctAnswerIndex);
+                break;
+        }
+
+        if (answer == correctAnswer)
         {
             // Correct answer
-            Debug.Log("Correct answer selected: " + v);
+            Debug.Log("Correct answer selected: " + answer);
             // Add code to restore health here
             PlayerInformation.control.Heal();
         }
         else
         {
             // Incorrect answer
-           Debug.Log("Incorrect answer selected: " + v);
+           Debug.Log("Incorrect answer selected: " + answer + " Correct answer is: " + correctAnswer);
             // Add code to handle incorrect answer here
         }
         healthVisualElement.style.display = DisplayStyle.None;
-        PauseGame.pauseResumeGame();
+        Destroy(gameObject);
+        if (PlayerInformation.control.isPaused == true)
+        {
+            PauseGame.pauseResumeGame();
+        }
+        
     }
 }

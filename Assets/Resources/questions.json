@@ -1,179 +1,180 @@
- [
-  {
-    "questionText": "Java is considered a(n) ________ type programming language?",
-    "answerA": "procedural",
-    "answerB": "object-oriented",
-    "answerC": "declarative",
-    "answerD": "functional",
-    "correctAnswerIndex": 1
-  },
-  {
-    "questionText": "Which language is primarily used for developing iOS apps?",
-    "answerA": "Swift",
-    "answerB": "Java",
-    "answerC": "C#",
-    "answerD": "Python",
-    "correctAnswerIndex": 0
-  },
-  {
-    "questionText": "What is the correct syntax to output in Java?",
-    "answerA": "Console.WriteLine(\"Hello World\");",
-    "answerB": "print(\"Hello World\")",
-    "answerC": "System.out.println(\"Hello World\");",
-    "answerD": "echo(\"Hello World\");",
-    "correctAnswerIndex": 2
-  },
-  {
-    "questionText": "Which symbol is used for single-line comments in C#?",
-    "answerA": "/* */",
-    "answerB": "#",
-    "answerC": "//",
-    "answerD": "--",
-    "correctAnswerIndex": 2
-  },
-  {
-    "questionText": "Which HTML tag is used to define an unordered list?",
-    "answerA": "<ol>",
-    "answerB": "<li>",
-    "answerC": "<ul>",
-    "answerD": "<list>",
-    "correctAnswerIndex": 2
-  },
-  {
-    "questionText": "What does CSS stand for?",
-    "answerA": "Computer Style Sheets",
-    "answerB": "Cascading Style Sheets",
-    "answerC": "Creative Style System",
-    "answerD": "Colorful Style Syntax",
-    "correctAnswerIndex": 1
-  },
-  {
-    "questionText": "Which PHP superglobal is used to collect form data?",
-    "answerA": "$_DATA",
-    "answerB": "$_FORM",
-    "answerC": "$_GET",
-    "answerD": "$_INFO",
-    "correctAnswerIndex": 2
-  },
-  {
-    "questionText": "Which SQL statement is used to extract data from a database?",
-    "answerA": "GET",
-    "answerB": "SELECT",
-    "answerC": "EXTRACT",
-    "answerD": "PULL",
-    "correctAnswerIndex": 1
-  },
-  {
-    "questionText": "What keyword is used to declare a variable in JavaScript?",
-    "answerA": "int",
-    "answerB": "var",
-    "answerC": "String",
-    "answerD": "dim",
-    "correctAnswerIndex": 1
-  },
-  {
-    "questionText": "Which method is used to add an element to the end of an array in JavaScript?",
-    "answerA": "push()",
-    "answerB": "append()",
-    "answerC": "add()",
-    "answerD": "insert()",
-    "correctAnswerIndex": 0
-  },
-  {
-    "questionText": "What does SQL stand for?",
-    "answerA": "Structured Query Language",
-    "answerB": "Simple Query Language",
-    "answerC": "Sequential Query Logic",
-    "answerD": "Server Query Line",
-    "correctAnswerIndex": 0
-  },
-  {
-    "questionText": "How do you create a class in C#?",
-    "answerA": "function MyClass()",
-    "answerB": "class MyClass {}",
-    "answerC": "def MyClass:",
-    "answerD": "public static MyClass",
-    "correctAnswerIndex": 1
-  },
-  {
-    "questionText": "Which HTML element is used for inserting a line break?",
-    "answerA": "<lb>",
-    "answerB": "<br>",
-    "answerC": "<line>",
-    "answerD": "<break>",
-    "correctAnswerIndex": 1
-  },
-  {
-    "questionText": "Which selector in CSS selects an element with id 'header'?",
-    "answerA": ".header",
-    "answerB": "#header",
-    "answerC": "*header",
-    "answerD": "header",
-    "correctAnswerIndex": 1
-  },
-  {
-    "questionText": "Which tag is used to embed JavaScript in HTML?",
-    "answerA": "<script>",
-    "answerB": "<js>",
-    "answerC": "<javascript>",
-    "answerD": "<code>",
-    "correctAnswerIndex": 0
-  },
-  {
-    "questionText": "What is the default port for MySQL?",
-    "answerA": "80",
-    "answerB": "3306",
-    "answerC": "5432",
-    "answerD": "8080",
-    "correctAnswerIndex": 1
-  },
-  {
-    "questionText": "In Java, which keyword is used to inherit a class?",
-    "answerA": "implements",
-    "answerB": "inherits",
-    "answerC": "extends",
-    "answerD": "uses",
-    "correctAnswerIndex": 2
-  },
-  {
-    "questionText": "Which symbol is used for concatenation in PHP?",
-    "answerA": "+",
-    "answerB": "&",
-    "answerC": ".",
-    "answerD": "++",
-    "correctAnswerIndex": 2
-  },
-  {
-    "questionText": "Which keyword is used to create a new object in C#?",
-    "answerA": "create",
-    "answerB": "init",
-    "answerC": "new",
-    "answerD": "object",
-    "correctAnswerIndex": 2
-  },
-  {
-    "questionText": "What is the purpose of 'DOCTYPE html'?",
-    "answerA": "To define a JavaScript object",
-    "answerB": "To initialize CSS rules",
-    "answerC": "To specify the HTML version",
-    "answerD": "To load external stylesheets",
-    "correctAnswerIndex": 2
-  },
-  {
-    "questionText": "Which SQL clause is used to filter records?",
-    "answerA": "WHERE",
-    "answerB": "SELECT",
-    "answerC": "FROM",
-    "answerD": "JOIN",
-    "correctAnswerIndex": 0
-  },
-  {
-    "questionText": "Which JavaScript function converts a string to an integer?",
-    "answerA": "Int()",
-    "answerB": "parseInt()",
-    "answerC": "toInteger()",
-    "answerD": "convert()",
-    "correctAnswerIndex": 1
-  }   
-]
-
+{
+    "questions": [
+        {
+            "questionText": "Java is considered a(n) ________ type programming language?",
+            "answerA": "procedural",
+            "answerB": "object-oriented",
+            "answerC": "declarative",
+            "answerD": "functional",
+            "correctAnswerIndex": 1
+        },
+        {
+            "questionText": "Which language is primarily used for developing iOS apps?",
+            "answerA": "Swift",
+            "answerB": "Java",
+            "answerC": "C#",
+            "answerD": "Python",
+            "correctAnswerIndex": 0
+        },
+        {
+            "questionText": "What is the correct syntax to output in Java?",
+            "answerA": "Console.WriteLine(\"Hello World\");",
+            "answerB": "print(\"Hello World\")",
+            "answerC": "System.out.println(\"Hello World\");",
+            "answerD": "echo(\"Hello World\");",
+            "correctAnswerIndex": 2
+        },
+        {
+            "questionText": "Which symbol is used for single-line comments in C#?",
+            "answerA": "/* */",
+            "answerB": "#",
+            "answerC": "//",
+            "answerD": "--",
+            "correctAnswerIndex": 2
+        },
+        {
+            "questionText": "Which HTML tag is used to define an unordered list?",
+            "answerA": "<ol>",
+            "answerB": "<li>",
+            "answerC": "<ul>",
+            "answerD": "<list>",
+            "correctAnswerIndex": 2
+        },
+        {
+            "questionText": "What does CSS stand for?",
+            "answerA": "Computer Style Sheets",
+            "answerB": "Cascading Style Sheets",
+            "answerC": "Creative Style System",
+            "answerD": "Colorful Style Syntax",
+            "correctAnswerIndex": 1
+        },
+        {
+            "questionText": "Which PHP superglobal is used to collect form data?",
+            "answerA": "$_DATA",
+            "answerB": "$_FORM",
+            "answerC": "$_GET",
+            "answerD": "$_INFO",
+            "correctAnswerIndex": 2
+        },
+        {
+            "questionText": "Which SQL statement is used to extract data from a database?",
+            "answerA": "GET",
+            "answerB": "SELECT",
+            "answerC": "EXTRACT",
+            "answerD": "PULL",
+            "correctAnswerIndex": 1
+        },
+        {
+            "questionText": "What keyword is used to declare a variable in JavaScript?",
+            "answerA": "int",
+            "answerB": "var",
+            "answerC": "String",
+            "answerD": "dim",
+            "correctAnswerIndex": 1
+        },
+        {
+            "questionText": "Which method is used to add an element to the end of an array in JavaScript?",
+            "answerA": "push()",
+            "answerB": "append()",
+            "answerC": "add()",
+            "answerD": "insert()",
+            "correctAnswerIndex": 0
+        },
+        {
+            "questionText": "What does SQL stand for?",
+            "answerA": "Structured Query Language",
+            "answerB": "Simple Query Language",
+            "answerC": "Sequential Query Logic",
+            "answerD": "Server Query Line",
+            "correctAnswerIndex": 0
+        },
+        {
+            "questionText": "How do you create a class in C#?",
+            "answerA": "function MyClass()",
+            "answerB": "class MyClass {}",
+            "answerC": "def MyClass:",
+            "answerD": "public static MyClass",
+            "correctAnswerIndex": 1
+        },
+        {
+            "questionText": "Which HTML element is used for inserting a line break?",
+            "answerA": "<lb>",
+            "answerB": "<br>",
+            "answerC": "<line>",
+            "answerD": "<break>",
+            "correctAnswerIndex": 1
+        },
+        {
+            "questionText": "Which selector in CSS selects an element with id 'header'?",
+            "answerA": ".header",
+            "answerB": "#header",
+            "answerC": "*header",
+            "answerD": "header",
+            "correctAnswerIndex": 1
+        },
+        {
+            "questionText": "Which tag is used to embed JavaScript in HTML?",
+            "answerA": "<script>",
+            "answerB": "<js>",
+            "answerC": "<javascript>",
+            "answerD": "<code>",
+            "correctAnswerIndex": 0
+        },
+        {
+            "questionText": "What is the default port for MySQL?",
+            "answerA": "80",
+            "answerB": "3306",
+            "answerC": "5432",
+            "answerD": "8080",
+            "correctAnswerIndex": 1
+        },
+        {
+            "questionText": "In Java, which keyword is used to inherit a class?",
+            "answerA": "implements",
+            "answerB": "inherits",
+            "answerC": "extends",
+            "answerD": "uses",
+            "correctAnswerIndex": 2
+        },
+        {
+            "questionText": "Which symbol is used for concatenation in PHP?",
+            "answerA": "+",
+            "answerB": "&",
+            "answerC": ".",
+            "answerD": "++",
+            "correctAnswerIndex": 2
+        },
+        {
+            "questionText": "Which keyword is used to create a new object in C#?",
+            "answerA": "create",
+            "answerB": "init",
+            "answerC": "new",
+            "answerD": "object",
+            "correctAnswerIndex": 2
+        },
+        {
+            "questionText": "What is the purpose of 'DOCTYPE html'?",
+            "answerA": "To define a JavaScript object",
+            "answerB": "To initialize CSS rules",
+            "answerC": "To specify the HTML version",
+            "answerD": "To load external stylesheets",
+            "correctAnswerIndex": 2
+        },
+        {
+            "questionText": "Which SQL clause is used to filter records?",
+            "answerA": "WHERE",
+            "answerB": "SELECT",
+            "answerC": "FROM",
+            "answerD": "JOIN",
+            "correctAnswerIndex": 0
+        },
+        {
+            "questionText": "Which JavaScript function converts a string to an integer?",
+            "answerA": "Int()",
+            "answerB": "parseInt()",
+            "answerC": "toInteger()",
+            "answerD": "convert()",
+            "correctAnswerIndex": 1
+        }
+    ]
+}
