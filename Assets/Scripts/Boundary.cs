@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class Boundary : MonoBehaviour
 {
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerInformation.control.TakeDamage(100);
+        Debug.Log("Collision detected with " + collision.gameObject.name);
     }
 }

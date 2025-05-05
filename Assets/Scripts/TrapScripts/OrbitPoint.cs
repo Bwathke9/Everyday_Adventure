@@ -23,6 +23,7 @@ public class OrbitPoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerInformation.control.TakeDamage(25);
+        Debug.Log("Collision detected with " + collision.gameObject.name);
     }
 
 }
