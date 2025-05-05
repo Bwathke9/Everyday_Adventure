@@ -44,6 +44,7 @@ public class PlayerInformation : MonoBehaviour
     void Start()
     {
         myAnim = GetComponent<Animator>();
+        PlayerInformation.control.respawnPoint = FindObjectOfType<RespawnPoint>().transform;
     }
 
 
