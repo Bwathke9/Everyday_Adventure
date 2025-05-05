@@ -56,9 +56,9 @@ public class PlayerInformation : MonoBehaviour
             timeDisplay = DisplayTime(timer);
             CheckHealth();
         }
-        if (Input.GetKeyDown(KeyCode.H)) {
-            TakeDamage(10);
-        }
+        // if (Input.GetKeyDown(KeyCode.H)) {
+        //     TakeDamage(10);
+        // }
     }
     // This function is called when the player collects a power-up
     // todo: add a powerUp system
