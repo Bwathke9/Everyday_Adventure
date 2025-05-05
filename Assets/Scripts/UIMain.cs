@@ -21,6 +21,8 @@ public class UIMain : MonoBehaviour
     private string pauseWindowName = "pauseWindow";
     private string resumeButtonName = "resumeButton";
     private string mainMenuButtonName = "mainMenuButton";
+    private string exitButtonName = "exitGameButton";
+
 
     //assign variables to the UI elements
     private ProgressBar healthDisplay;    
@@ -39,6 +41,8 @@ public class UIMain : MonoBehaviour
     private VisualElement pauseWindow;
     private Button resumeButton;
     private Button mainMenuButton;
+    private Button exitGameButton;
+
 
     VisualElement leftVisualElement;
     VisualElement rightVisualElement;  
@@ -81,11 +85,13 @@ public class UIMain : MonoBehaviour
         pauseWindow = uIDocument.rootVisualElement.Q<VisualElement>(pauseWindowName);
         resumeButton = pauseWindow.Q<Button>(resumeButtonName);
         mainMenuButton = pauseWindow.Q<Button>(mainMenuButtonName);
+        exitGameButton = pauseWindow.Q<Button>(exitButtonName);
         pauseWindow.style.display = DisplayStyle.None;
         pauseButton.clicked += TogglePopUp;
         resumeButton.clicked += TogglePopUp;
         
         mainMenuButton.clicked += () => SceneManager.LoadScene("MainMenu");
+        exitGameButton.clicked += ExitGame;
         
 
         scoreOut = new Label();
@@ -131,5 +137,13 @@ public class UIMain : MonoBehaviour
         timerOut.text = " " + PlayerInformation.control.timeDisplay;
     }
 
+    private void ExitGame()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #else
+        Application.Quit();
+    #endif
+    }
     
 }
