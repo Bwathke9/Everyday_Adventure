@@ -5,6 +5,8 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     bool isCollected = false;
+    public AudioClip pickupSound;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,17 +18,18 @@ public class Item : MonoBehaviour
     void Update()
     {
         
-    }
+    }  
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            isCollected = true;
+            isCollected = true;            
         }
         // add score to player Adam Nixdorf
-        PlayerInformation.control.SetScore (10);
+        PlayerInformation.control.SetScore (10);        
 
+        AudioSource.PlayClipAtPoint(pickupSound, transform.position);
         Destroy(gameObject);
     }
 
