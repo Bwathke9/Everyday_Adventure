@@ -99,7 +99,7 @@
         {
             "questionText": "Which HTML element is used for inserting a line break?",
             "answerA": "<lb>",
-            "answerB": " <br> ",
+            "answerB": "<br>",
             "answerC": "<line>",
             "answerD": "<break>",
             "correctAnswerIndex": 1
