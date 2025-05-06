@@ -29,8 +29,8 @@ public class Item : MonoBehaviour
         // add score to player Adam Nixdorf
         PlayerInformation.control.SetScore (10);        
 
-        AudioSource.PlayClipAtPoint(pickupSound, transform.position);
         Destroy(gameObject);
+        AudioSource.PlayClipAtPoint(pickupSound, transform.position);
     }
 
 }
