@@ -1,12 +1,3 @@
-.VisualElement {
-    align-items: stretch;
-    margin-top: 20px;
-    margin-right: 20px;
-    margin-bottom: 50px;
-    margin-left: 20px;
-    display: none;
-}
-
 #healthRestoreTitle {
     font-size: 175%;
     -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Fonts/Future%20TimeSplitters.otf?fileID=12800000&guid=41871a1504f2a2e449bf5129b26692d0&type=3#Future TimeSplitters");
@@ -48,4 +39,13 @@
     margin-bottom: auto;
     margin-left: auto;
     min-width: 200px;
+}
+
+.VisualElement {
+    align-items: stretch;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    display: none;
 }
