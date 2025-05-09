@@ -9,10 +9,10 @@ using System.Collections;
 using System.Threading;
 using UnityEngine.SceneManagement;
 
-public class UIMain : MonoBehaviour
+public class UIMain : MonoBehaviour    
 {
     //assign the names of the UI elements in the UI Builder
-    private string healthDisplayName = "healthDisplay";    
+    private string healthDisplayName = "healthDisplay";
     private string powerUpLabelName = "powerUpDisplay";
     private string scoreLabelName = "scoreDisplay";
     private string levelLabelName = "levelDisplay";
@@ -22,16 +22,16 @@ public class UIMain : MonoBehaviour
     private string resumeButtonName = "resumeButton";
     private string mainMenuButtonName = "mainMenuButton";
     private string exitButtonName = "exitGameButton";
-
+   
 
     //assign variables to the UI elements
-    private ProgressBar healthDisplay;    
+    private ProgressBar healthDisplay;
     private ProgressBar powerUpDisplay;
     private VisualElement scoreDisplay;
     private VisualElement levelDisplay;
     private VisualElement timerDisplay;
     private Button pauseButton;
-    
+
 
     private Label scoreOut;
     private Label levelOut;
@@ -43,11 +43,11 @@ public class UIMain : MonoBehaviour
     private Button mainMenuButton;
     private Button exitGameButton;
 
-
+   
     VisualElement leftVisualElement;
-    VisualElement rightVisualElement;  
+    VisualElement rightVisualElement;
 
-    [NonSerialized] private UIDocument uIDocument;
+    [NonSerialized] public UIDocument uIDocument;
 
     void Start()
     {
@@ -144,6 +144,6 @@ public class UIMain : MonoBehaviour
     #else
         Application.Quit();
     #endif
-    }
-    
+    }  
+
 }

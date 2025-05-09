@@ -38,6 +38,13 @@
     border-bottom-width: 1px;
     border-left-width: 1px;
     -unity-font-definition: url("project://database/Assets/Simple%20Fantasy%20GUI/Font/MedievalSharp.ttf?fileID=12800000&guid=dab90a45cedf47b4291bd9816c597551&type=3#MedievalSharp");
+    color: rgb(111, 91, 68);
+    font-size: 18px;
+    -unity-font-style: bold;
+    padding-top: 1%;
+    padding-right: 1%;
+    padding-bottom: 1%;
+    padding-left: 1%;
 }
 
 #topRightVisualElement {
@@ -68,6 +75,13 @@
     -unity-background-image-tint-color: rgb(255, 255, 255);
     background-size: 120% 120%;
     -unity-font-definition: url("project://database/Assets/Simple%20Fantasy%20GUI/Font/MedievalSharp.ttf?fileID=12800000&guid=dab90a45cedf47b4291bd9816c597551&type=3#MedievalSharp");
+    color: rgb(111, 91, 68);
+    font-size: 18px;
+    -unity-font-style: bold;
+    padding-top: 1%;
+    padding-right: 1%;
+    padding-bottom: 1%;
+    padding-left: 1%;
 }
 
 #topLeftVisualElement > #powerUpVisualElement > #powerUpDisplay > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {

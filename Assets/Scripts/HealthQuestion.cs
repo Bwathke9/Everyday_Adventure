@@ -140,6 +140,7 @@ public class HealthQuestion : MonoBehaviour
     private void OnAnswerSelected(string answer, int correctAnswerIndex)
     {
         string correctAnswer = "";
+        string displayText = "";
         // Set the correct answer index
         // Store the correct answer index in a variable
         switch (correctAnswerIndex)
@@ -164,22 +165,35 @@ public class HealthQuestion : MonoBehaviour
         if (answer == correctAnswer)
         {
             // Correct answer
-            Debug.Log("Correct answer selected: " + answer);
+            displayText = ("Correct answer selected, your health will be restored");
             // Add code to restore health here
             PlayerInformation.control.Heal();
         }
         else
         {
             // Incorrect answer
-           Debug.Log("Incorrect answer selected: " + answer + " Correct answer is: " + correctAnswer);
+           displayText = ("Incorrect answer selected you will have to try and survive");
             // Add code to handle incorrect answer here
         }
         healthVisualElement.style.display = DisplayStyle.None;
-        Destroy(gameObject);
-        if (PlayerInformation.control.isPaused == true)
+        if (updateWindow.instance != null)
         {
-            PauseGame.pauseResumeGame();
+            updateWindow.instance.DisplayUpdateWindow(displayText);
+            Debug.Log("updateWindow instance is not null" + displayText);
         }
+        else
+        {
+            updateWindow.instance = FindObjectOfType<updateWindow>();
+            if (updateWindow.instance == null)
+            {
+               Debug.LogError("updateWindow instance is null");
+                return;
+            }
+            
+        }
+        //updateWindow.instance.DisplayUpdateWindow(displayText);
+        Destroy(gameObject);
         
+
     }
 }
