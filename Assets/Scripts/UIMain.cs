@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 
 public class UIMain : MonoBehaviour    
 {
-    public static UIMain instance;
+    //public static UIMain instance;
     //assign the names of the UI elements in the UI Builder
     private string healthDisplayName = "healthDisplay";
     private string powerUpLabelName = "powerUpDisplay";
@@ -58,17 +58,17 @@ public class UIMain : MonoBehaviour
 
     [NonSerialized] public UIDocument uIDocument;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //private void Awake()
+    //{
+    //    if (instance == null)
+    //    {
+    //        instance = this;
+    //    }
+    //    else if (instance != this)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
     void Start()
     {
 
@@ -157,10 +157,10 @@ public class UIMain : MonoBehaviour
                 powerUpDisplay.value = PlayerInformation.control.powerUp;
             }
             
-            timerOut.text = " " + PlayerInformation.control.timeDisplay;
+            //timerOut.text = " " + PlayerInformation.control.timeDisplay;
         }
-        scoreOut.text = " " + PlayerInformation.control.score;
-        timerOut.text = " " + PlayerInformation.control.timeDisplay;
+        //scoreOut.text = " " + PlayerInformation.control.score;
+        //timerOut.text = " " + PlayerInformation.control.timeDisplay;
     }
 
     private void ExitGame()
@@ -172,38 +172,38 @@ public class UIMain : MonoBehaviour
     #endif
     }
 
-    internal void DisplayUpdateWindow(string displayText)
-    {
-        updateInfoWindow.style.display = DisplayStyle.Flex; // Show the update info window
-        Debug.Log("Displaying update window with text: " + displayText);
-        if (updateLabel == null)
-        {
-            Debug.LogError("updateLabel is null");
-        }
-        if (updateInfoWindow == null)
-        {
-            Debug.LogError("updateInfoWindow is null");
-        }
-        if (continueButton == null)
-        {
-            Debug.LogError("continueButton is null");
-        }
-        if (updateVisElement == null)
-        {
-            Debug.LogError("updateVisElement is null");
-        }
-        if (updateLabel == null || updateInfoWindow == null || continueButton == null)
-        {
-            return; // Exit if any of the elements are null
-        }
-        updateLabel.text = displayText;
-        continueButton.clicked += () =>
-        {
-            updateInfoWindow.style.display = DisplayStyle.None;
-            PauseGame.pauseResumeGame();
+    //internal void DisplayUpdateWindow(string displayText)
+    //{
+    //    updateInfoWindow.style.display = DisplayStyle.Flex; // Show the update info window
+    //    Debug.Log("Displaying update window with text: " + displayText);
+    //    if (updateLabel == null)
+    //    {
+    //        Debug.LogError("updateLabel is null");
+    //    }
+    //    if (updateInfoWindow == null)
+    //    {
+    //        Debug.LogError("updateInfoWindow is null");
+    //    }
+    //    if (continueButton == null)
+    //    {
+    //        Debug.LogError("continueButton is null");
+    //    }
+    //    if (updateVisElement == null)
+    //    {
+    //        Debug.LogError("updateVisElement is null");
+    //    }
+    //    if (updateLabel == null || updateInfoWindow == null || continueButton == null)
+    //    {
+    //        return; // Exit if any of the elements are null
+    //    }
+    //    updateLabel.text = displayText;
+    //    continueButton.clicked += () =>
+    //    {
+    //        updateInfoWindow.style.display = DisplayStyle.None;
+    //        PauseGame.pauseResumeGame();
 
-            // Add any additional logic you want to execute when the continue button is clicked
-        };
-    }
+    //        // Add any additional logic you want to execute when the continue button is clicked
+    //    };
+    //}
 
 }

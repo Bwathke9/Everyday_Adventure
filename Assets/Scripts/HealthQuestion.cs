@@ -176,14 +176,15 @@ public class HealthQuestion : MonoBehaviour
             // Add code to handle incorrect answer here
         }
         healthVisualElement.style.display = DisplayStyle.None;
-        if (UIMain.instance != null)
+        if (updateWindow.instance != null)
         {
-            UIMain.instance.DisplayUpdateWindow(displayText);
+            updateWindow.instance.DisplayUpdateWindow(displayText);
+            Debug.Log("updateWindow instance is not null" + displayText);
         }
         else
         {
-            UIMain.instance = FindObjectOfType<UIMain>();
-            if (UIMain.instance == null)
+            updateWindow.instance = FindObjectOfType<updateWindow>();
+            if (updateWindow.instance == null)
             {
                Debug.LogError("updateWindow instance is null");
                 return;
