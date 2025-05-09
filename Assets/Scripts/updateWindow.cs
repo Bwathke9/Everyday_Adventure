@@ -36,8 +36,14 @@ public class updateWindow : MonoBehaviour
         updateLabel = updateVisElement.Q<Label>(updateLabelName);
         continueButton = updateInfoWindow.Q<Button>(continueButtonName);
     }
+    // call this function to display the update window make sure to pass in the text you want to display.
     internal void DisplayUpdateWindow(string displayText)
     {
+        if (PlayerInformation.control.isPaused == false)
+        {
+            PauseGame.pauseResumeGame();
+        }
+
         updateInfoWindow.style.display = DisplayStyle.Flex; // Show the update info window
 
         Debug.Log("Displaying update window with text: " + displayText);
