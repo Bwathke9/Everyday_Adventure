@@ -38,6 +38,11 @@ public class updateWindow : MonoBehaviour
     }
     internal void DisplayUpdateWindow(string displayText)
     {
+        if (PlayerInformation.control.isPaused == false)
+        {
+            PauseGame.pauseResumeGame();
+        }
+
         updateInfoWindow.style.display = DisplayStyle.Flex; // Show the update info window
 
         Debug.Log("Displaying update window with text: " + displayText);
