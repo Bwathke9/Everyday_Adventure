@@ -9,10 +9,11 @@ using System.Collections;
 using System.Threading;
 using UnityEngine.SceneManagement;
 
-public class UIMain : MonoBehaviour
+public class UIMain : MonoBehaviour    
 {
+    public static UIMain instance;
     //assign the names of the UI elements in the UI Builder
-    private string healthDisplayName = "healthDisplay";    
+    private string healthDisplayName = "healthDisplay";
     private string powerUpLabelName = "powerUpDisplay";
     private string scoreLabelName = "scoreDisplay";
     private string levelLabelName = "levelDisplay";
@@ -22,16 +23,19 @@ public class UIMain : MonoBehaviour
     private string resumeButtonName = "resumeButton";
     private string mainMenuButtonName = "mainMenuButton";
     private string exitButtonName = "exitGameButton";
-
+    private string updateInfoWindowName = "updateInfoWindow";
+    private string updateVisElementName = "updateVisualElement";
+    private string updateLabelName = "updateLabel";
+    private string continueButtonName = "continueButton";
 
     //assign variables to the UI elements
-    private ProgressBar healthDisplay;    
+    private ProgressBar healthDisplay;
     private ProgressBar powerUpDisplay;
     private VisualElement scoreDisplay;
     private VisualElement levelDisplay;
     private VisualElement timerDisplay;
     private Button pauseButton;
-    
+
 
     private Label scoreOut;
     private Label levelOut;
@@ -43,12 +47,28 @@ public class UIMain : MonoBehaviour
     private Button mainMenuButton;
     private Button exitGameButton;
 
+    private string updateLabelText;
+    private Label updateLabel;
+    private Button continueButton;
+    private VisualElement updateVisElement;
+    private VisualElement updateInfoWindow;
 
     VisualElement leftVisualElement;
-    VisualElement rightVisualElement;  
+    VisualElement rightVisualElement;
 
-    [NonSerialized] private UIDocument uIDocument;
+    [NonSerialized] public UIDocument uIDocument;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
 
@@ -86,6 +106,12 @@ public class UIMain : MonoBehaviour
         resumeButton = pauseWindow.Q<Button>(resumeButtonName);
         mainMenuButton = pauseWindow.Q<Button>(mainMenuButtonName);
         exitGameButton = pauseWindow.Q<Button>(exitButtonName);
+
+        updateInfoWindow = uIDocument.rootVisualElement.Q<VisualElement>(updateInfoWindowName);
+        updateVisElement = updateInfoWindow.Q<VisualElement>(updateVisElementName);
+        updateLabel = updateVisElement.Q<Label>(updateLabelName);
+        continueButton = updateInfoWindow.Q<Button>(continueButtonName);
+
         pauseWindow.style.display = DisplayStyle.None;
         pauseButton.clicked += TogglePopUp;
         resumeButton.clicked += TogglePopUp;
@@ -145,5 +171,39 @@ public class UIMain : MonoBehaviour
         Application.Quit();
     #endif
     }
-    
+
+    internal void DisplayUpdateWindow(string displayText)
+    {
+        updateInfoWindow.style.display = DisplayStyle.Flex; // Show the update info window
+        Debug.Log("Displaying update window with text: " + displayText);
+        if (updateLabel == null)
+        {
+            Debug.LogError("updateLabel is null");
+        }
+        if (updateInfoWindow == null)
+        {
+            Debug.LogError("updateInfoWindow is null");
+        }
+        if (continueButton == null)
+        {
+            Debug.LogError("continueButton is null");
+        }
+        if (updateVisElement == null)
+        {
+            Debug.LogError("updateVisElement is null");
+        }
+        if (updateLabel == null || updateInfoWindow == null || continueButton == null)
+        {
+            return; // Exit if any of the elements are null
+        }
+        updateLabel.text = displayText;
+        continueButton.clicked += () =>
+        {
+            updateInfoWindow.style.display = DisplayStyle.None;
+            PauseGame.pauseResumeGame();
+
+            // Add any additional logic you want to execute when the continue button is clicked
+        };
+    }
+
 }
