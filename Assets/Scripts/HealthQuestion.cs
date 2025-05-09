@@ -175,6 +175,7 @@ public class HealthQuestion : MonoBehaviour
            displayText = ("Incorrect answer selected you will have to try and survive");
             // Add code to handle incorrect answer here
         }
+        // Hide the health challenge UI
         healthVisualElement.style.display = DisplayStyle.None;
         if (updateWindow.instance != null)
         {
@@ -183,12 +184,12 @@ public class HealthQuestion : MonoBehaviour
         }
         else
         {
-            updateWindow.instance = FindObjectOfType<updateWindow>();
-            if (updateWindow.instance == null)
-            {
+            //updateWindow.instance = FindObjectOfType<updateWindow>();
+            //if (updateWindow.instance == null)
+            //{
                Debug.LogError("updateWindow instance is null");
                 return;
-            }
+            //}
             
         }
         //updateWindow.instance.DisplayUpdateWindow(displayText);

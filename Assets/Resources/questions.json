@@ -95,15 +95,7 @@
             "answerC": "def MyClass:",
             "answerD": "public static MyClass",
             "correctAnswerIndex": 1
-        },
-        {
-            "questionText": "Which HTML element is used for inserting a line break?",
-            "answerA": "<lb>",
-            "answerB": "<br>",
-            "answerC": "<line>",
-            "answerD": "<break>",
-            "correctAnswerIndex": 1
-        },
+        },        
         {
             "questionText": "Which selector in CSS selects an element with id 'header'?",
             "answerA": ".header",

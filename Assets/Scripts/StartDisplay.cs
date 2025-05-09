@@ -1,3 +1,4 @@
+// By Adam Nixdorf
 using UnityEngine;
 
 public class StartDisplay : MonoBehaviour
@@ -11,7 +12,6 @@ public class StartDisplay : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-
         if (updateWindow.instance != null)
         {
             updateWindow.instance.DisplayUpdateWindow(startMessage);
@@ -19,15 +19,10 @@ public class StartDisplay : MonoBehaviour
         }
         else
         {
-            updateWindow.instance = FindObjectOfType<updateWindow>();
-            if (updateWindow.instance == null)
-            {
-                Debug.LogError("updateWindow instance is null");
-                return;
-            }
-
+            Debug.LogError("updateWindow instance is null");
+            return;
         }
-        //updateWindow.instance.DisplayUpdateWindow(displayText);
+        // Destroy the object after displaying the message so it doesn't show again
         Destroy(gameObject);
     }
 }
