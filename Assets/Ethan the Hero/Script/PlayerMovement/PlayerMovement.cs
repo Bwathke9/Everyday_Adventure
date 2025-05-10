@@ -15,6 +15,13 @@ namespace EthanTheHero
 		[SerializeField] private LayerMask groundLayer;
 		[SerializeField] private LayerMask wallLayer;
 		[SerializeField] private Transform WallCheck;
+		// Super Speed Power-Up
+		[SerializeField] private float superSpeedMultiplier = 2f;
+		[SerializeField] private float superSpeedDuration = 10f;
+		private bool isSuperSpeedActive = false;
+		private float superSpeedEndTime = 0f;
+
+		
 
 		[HideInInspector] public Vector2 move;
 
@@ -67,6 +74,13 @@ namespace EthanTheHero
 
 			if (wallSliding && jumpButtonPressed)
 				StartCoroutine(wallJumpMechanic());
+				
+			// Check if super speed duration is over
+			if (isSuperSpeedActive && Time.time >= superSpeedEndTime)
+			{
+    			isSuperSpeedActive = false;
+			}
+
 
 		}
 
@@ -94,7 +108,12 @@ namespace EthanTheHero
         #region RUN
         private void run(float lerpAmount)
 		{
-			float targetSpeed = move.x * data.runMaxSpeed;
+			float speed = data.runMaxSpeed;
+			if (isSuperSpeedActive)
+    		speed *= superSpeedMultiplier;
+
+			float targetSpeed = move.x * speed;
+
 
 			float accelRate;
 
@@ -204,5 +223,25 @@ namespace EthanTheHero
 			transform.localScale = tem;
 		}
 		#endregion
+
+
+        
+public void ActivateSuperSpeed()
+{
+    isSuperSpeedActive = true;
+    superSpeedEndTime = Time.time + superSpeedDuration;
+}
+
+	public void SetSuperSpeed(bool isActive)
+		{
+		    isSuperSpeedActive = isActive;
+    		if (isActive)
+    		{
+        		superSpeedEndTime = Time.time + superSpeedDuration;
+    		}
+		}
+
+
+
 	}
 }
