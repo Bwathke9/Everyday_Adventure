@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &110707069089637565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4445325848368236197}
+  m_Layer: 0
+  m_Name: WallCheckPointLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4445325848368236197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110707069089637565}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.286, y: -0.003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1249991941296061762}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1550661846751074520
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 1550661846751074520}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.226, y: 0.024, z: 0}
+  m_LocalPosition: {x: 0.23, y: -0.025, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73,7 +104,6 @@ GameObject:
   - component: {fileID: 1249991941296061762}
   - component: {fileID: 6591945371862118934}
   - component: {fileID: 862479134955515748}
-  - component: {fileID: 2347739292148580852}
   - component: {fileID: 5741259341062718701}
   - component: {fileID: 4989640643807054600}
   - component: {fileID: 1519335060919039443}
@@ -101,6 +131,7 @@ Transform:
   m_Children:
   - {fileID: 7331543408048929702}
   - {fileID: 4318289197062275434}
+  - {fileID: 4445325848368236197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6591945371862118934
@@ -170,21 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94fa40dd9b7dfcf4fad3e62369c9e4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2347739292148580852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7817899664315468043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c8b53c71217aac47bd9acae926ce6ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  basicAttack01Power: 0.5
-  basicAttack02Power: 0.5
-  basicAttack03Power: 0.9
 --- !u!114 &5741259341062718701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +223,8 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
-  WallCheck: {fileID: 4318289197062275434}
+  WallCheckLeft: {fileID: 4445325848368236197}
+  WallCheckRight: {fileID: 4318289197062275434}
   move: {x: 0, y: 0}
   isDashing: 0
   grounded: 0

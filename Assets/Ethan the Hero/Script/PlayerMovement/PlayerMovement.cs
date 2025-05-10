@@ -14,7 +14,8 @@ namespace EthanTheHero
 		[SerializeField] private Vector2 groundCheckSize = new Vector2(0.49f, 0.03f);
 		[SerializeField] private LayerMask groundLayer;
 		[SerializeField] private LayerMask wallLayer;
-		[SerializeField] private Transform WallCheck;
+		[SerializeField] private Transform WallCheckLeft;
+		[SerializeField] private Transform WallCheckRight;
 
 		[HideInInspector] public Vector2 move;
 
@@ -162,19 +163,26 @@ namespace EthanTheHero
 		#region Wall Sliding and Wall Jump
 		private void WallSlidngMechanic()
 		{
-			wall = Physics2D.Raycast(WallCheck.position, new Vector2(data.wallDistance, 0f), data.wallDistance, wallLayer);
-			Debug.DrawRay(WallCheck.position, new Vector2(data.wallDistance, 0f), Color.red);
+			wall = Physics2D.Raycast(WallCheckRight.position, Vector2.right, data.wallDistance, wallLayer);
+			Debug.DrawRay(WallCheckRight.position, Vector2.right * data.wallDistance, Color.red);
+
+			RaycastHit2D wallLeft = Physics2D.Raycast(WallCheckLeft.position, Vector2.left, data.wallDistance, wallLayer);
+			Debug.DrawRay(WallCheckLeft.position, Vector2.left * data.wallDistance, Color.red);
 
 
-			if (!grounded && wall)
+			if (!grounded && (wall || wallLeft))
 			{
 				wallSliding = true;
 				jumpTime = Time.time + data.wallJumpTime;
 			}
 			else if (jumpTime < Time.time)
+			{
 				wallSliding = false;
+			}
 			else
+			{
 				wallSliding = false;
+			}
 
 			if (wallSliding)
 				myBody.linearVelocity = new Vector2(myBody.linearVelocity.x, Mathf.Clamp(myBody.linearVelocity.y, -data.wallSlideSpeed, float.MaxValue));

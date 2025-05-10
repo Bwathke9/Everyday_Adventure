@@ -22,9 +22,11 @@ public class OrbitPoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerInformation.control.TakeDamage(25);
+      if (collision.CompareTag("Player")) 
+      {
+          PlayerInformation.control.TakeDamage(25);
+      }
     }
-
 }
 
 
