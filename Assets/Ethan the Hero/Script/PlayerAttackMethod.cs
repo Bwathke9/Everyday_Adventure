@@ -6,153 +6,153 @@ namespace EthanTheHero
 {
 	public class PlayerAttackMethod : MonoBehaviour
 	{
-		#region FIELD
+		// #region FIELD
 
-		private PlayerAnimation playerAnim;
-		private PlayerMovement playerMv;
-		private Animator myAnim;
-		private Rigidbody2D myBody;
+		// private PlayerAnimation playerAnim;
+		// private PlayerMovement playerMv;
+		// private Animator myAnim;
+		// private Rigidbody2D myBody;
 
-		[Header("Basic Attack")]
-		public float basicAttack01Power = 0.5f;
-		public float basicAttack02Power = 0.5f;
-		public float basicAttack03Power = 0.9f;
+		// [Header("Basic Attack")]
+		// public float basicAttack01Power = 0.5f;
+		// public float basicAttack02Power = 0.5f;
+		// public float basicAttack03Power = 0.9f;
 
-		private bool atkButtonClickedOnAtk01;
-		private bool atkButtonClickedOnAtk02;
-		private bool atkButtonClickedOnAtk03;
+		// private bool atkButtonClickedOnAtk01;
+		// private bool atkButtonClickedOnAtk02;
+		// private bool atkButtonClickedOnAtk03;
 
-		private const string attack01 = "Attack01";
-		private const string attack02 = "Attack02";
-		private const string attack03 = "Attack03";
-		private const string notAttacking = "NotAttacking";
+		// private const string attack01 = "Attack01";
+		// private const string attack02 = "Attack02";
+		// private const string attack03 = "Attack03";
+		// private const string notAttacking = "NotAttacking";
 
-		#endregion
+		// #endregion
 
-		void Awake()
-		{
-			myAnim = GetComponent<Animator>();
-			playerAnim = GetComponent<PlayerAnimation>();
-			myBody = GetComponent<Rigidbody2D>();
-			playerMv = GetComponent<PlayerMovement>();
-		}
+		// void Awake()
+		// {
+		// 	myAnim = GetComponent<Animator>();
+		// 	playerAnim = GetComponent<PlayerAnimation>();
+		// 	myBody = GetComponent<Rigidbody2D>();
+		// 	playerMv = GetComponent<PlayerMovement>();
+		// }
 
-		void Update()
-		{
-			if (playerMv.isDashing || playerMv.wallJump || playerMv.wallSliding)
-				return;
-
-
-			BasicAttackCombo();
+		// void Update()
+		// {
+		// 	if (playerMv.isDashing || playerMv.wallJump || playerMv.wallSliding)
+		// 		return;
 
 
-		}
+		// 	BasicAttackCombo();
 
-		void FixedUpdate()
-		{
-			if (playerMv.isDashing || playerMv.wallJump || playerMv.wallSliding)
-				return;
 
-			BasicAttackMethod();
+		// }
 
-		}
+		// void FixedUpdate()
+		// {
+		// 	if (playerMv.isDashing || playerMv.wallJump || playerMv.wallSliding)
+		// 		return;
 
-		#region BASIC ATTACK
+		// 	BasicAttackMethod();
 
-		private void BasicAttackCombo()
-		{
-			//Combo attack mechanic
-			if (Input.GetMouseButtonDown(0) && !myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") && !myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") && !myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03") && playerMv.grounded)
-				myAnim.SetTrigger(attack01);
+		// }
 
-			//Set combo attack 01 
-			if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01"))
-			{
-				//See if attak button is clicked
-				if (Input.GetMouseButtonDown(0))
-					atkButtonClickedOnAtk01 = true;
+		// #region BASIC ATTACK
 
-				//Set if attack 01 animation is ended playying and attack button is clicked while attack 01 animation is playing
-				if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= .8 && atkButtonClickedOnAtk01)
-				{
-					myAnim.SetTrigger(attack02);
-					atkButtonClickedOnAtk01 = false;
+		// private void BasicAttackCombo()
+		// {
+		// 	//Combo attack mechanic
+		// 	if (Input.GetMouseButtonDown(0) && !myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") && !myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") && !myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03") && playerMv.grounded)
+		// 		myAnim.SetTrigger(attack01);
 
-				}
-				//Set if attack 01 animation is ended playying and attack button is not clicked while attack 01 animation is playing
-				else if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !atkButtonClickedOnAtk01)
-					myAnim.SetTrigger(notAttacking);
-			}
+		// 	//Set combo attack 01 
+		// 	if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01"))
+		// 	{
+		// 		//See if attak button is clicked
+		// 		if (Input.GetMouseButtonDown(0))
+		// 			atkButtonClickedOnAtk01 = true;
 
-			//Set combo attack 02
-			if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02"))
-			{
-				//See if attak button is clicked
-				if (Input.GetMouseButtonDown(0))
-					atkButtonClickedOnAtk02 = true;
+		// 		//Set if attack 01 animation is ended playying and attack button is clicked while attack 01 animation is playing
+		// 		if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= .8 && atkButtonClickedOnAtk01)
+		// 		{
+		// 			myAnim.SetTrigger(attack02);
+		// 			atkButtonClickedOnAtk01 = false;
 
-				//Set if attack 02 animation is ended playying and attack button is clicked while attack 02 animation is playing
-				if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= .8 && atkButtonClickedOnAtk02)
-				{
-					myAnim.SetTrigger(attack03);
-					atkButtonClickedOnAtk02 = false;
+		// 		}
+		// 		//Set if attack 01 animation is ended playying and attack button is not clicked while attack 01 animation is playing
+		// 		else if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !atkButtonClickedOnAtk01)
+		// 			myAnim.SetTrigger(notAttacking);
+		// 	}
 
-				}
-				//Set if attack 02 animation is ended playying and attack button is not clicked while attack 02 animation is playing
-				else if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !atkButtonClickedOnAtk02)
-					myAnim.SetTrigger(notAttacking);
-			}
+		// 	//Set combo attack 02
+		// 	if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02"))
+		// 	{
+		// 		//See if attak button is clicked
+		// 		if (Input.GetMouseButtonDown(0))
+		// 			atkButtonClickedOnAtk02 = true;
 
-			//Set combo attack 03
-			if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
-			{
-				//See if attak button is clicked
-				if (Input.GetMouseButtonDown(0))
-					atkButtonClickedOnAtk03 = true;
+		// 		//Set if attack 02 animation is ended playying and attack button is clicked while attack 02 animation is playing
+		// 		if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= .8 && atkButtonClickedOnAtk02)
+		// 		{
+		// 			myAnim.SetTrigger(attack03);
+		// 			atkButtonClickedOnAtk02 = false;
 
-				//Set if attack 03 animation is ended playying and attack button is clicked while attack 03 animation is playing
-				if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && atkButtonClickedOnAtk03)
-				{
-					myAnim.SetTrigger(attack01);
-					atkButtonClickedOnAtk03 = false;
+		// 		}
+		// 		//Set if attack 02 animation is ended playying and attack button is not clicked while attack 02 animation is playing
+		// 		else if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !atkButtonClickedOnAtk02)
+		// 			myAnim.SetTrigger(notAttacking);
+		// 	}
 
-				}
-				//Set if attack 03 animation is ended playying and attack button is not clicked while attack 03 animation is playing
-				else if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !atkButtonClickedOnAtk03)
-					myAnim.SetTrigger(notAttacking);
-			}
-		}
+		// 	//Set combo attack 03
+		// 	if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
+		// 	{
+		// 		//See if attak button is clicked
+		// 		if (Input.GetMouseButtonDown(0))
+		// 			atkButtonClickedOnAtk03 = true;
 
-		private void BasicAttackMethod()
-		{
+		// 		//Set if attack 03 animation is ended playying and attack button is clicked while attack 03 animation is playing
+		// 		if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && atkButtonClickedOnAtk03)
+		// 		{
+		// 			myAnim.SetTrigger(attack01);
+		// 			atkButtonClickedOnAtk03 = false;
 
-			//Move player if player is in attacking state
-			if (transform.localScale.x == 1)
-			{
-				if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01"))
-					myBody.linearVelocity = new Vector2(basicAttack01Power, myBody.linearVelocity.y);
+		// 		}
+		// 		//Set if attack 03 animation is ended playying and attack button is not clicked while attack 03 animation is playing
+		// 		else if (myAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !atkButtonClickedOnAtk03)
+		// 			myAnim.SetTrigger(notAttacking);
+		// 	}
+		// }
 
-				if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02"))
-					myBody.linearVelocity = new Vector2(basicAttack02Power, myBody.linearVelocity.y);
+		// private void BasicAttackMethod()
+		// {
 
-				if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
-					myBody.linearVelocity = new Vector2(basicAttack03Power, myBody.linearVelocity.y);
-			}
-			else
-			{
-				if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01"))
-					myBody.linearVelocity = new Vector2(-basicAttack01Power, myBody.linearVelocity.y);
+		// 	//Move player if player is in attacking state
+		// 	if (transform.localScale.x == 1)
+		// 	{
+		// 		if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01"))
+		// 			myBody.linearVelocity = new Vector2(basicAttack01Power, myBody.linearVelocity.y);
 
-				if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02"))
-					myBody.linearVelocity = new Vector2(-basicAttack02Power, myBody.linearVelocity.y);
+		// 		if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02"))
+		// 			myBody.linearVelocity = new Vector2(basicAttack02Power, myBody.linearVelocity.y);
 
-				if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
-					myBody.linearVelocity = new Vector2(-basicAttack03Power, myBody.linearVelocity.y);
-			}
+		// 		if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
+		// 			myBody.linearVelocity = new Vector2(basicAttack03Power, myBody.linearVelocity.y);
+		// 	}
+		// 	else
+		// 	{
+		// 		if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01"))
+		// 			myBody.linearVelocity = new Vector2(-basicAttack01Power, myBody.linearVelocity.y);
 
-		}
+		// 		if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02"))
+		// 			myBody.linearVelocity = new Vector2(-basicAttack02Power, myBody.linearVelocity.y);
 
-		#endregion
+		// 		if (myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
+		// 			myBody.linearVelocity = new Vector2(-basicAttack03Power, myBody.linearVelocity.y);
+		// 	}
+
+		// }
+
+		// #endregion
 
 
 	}

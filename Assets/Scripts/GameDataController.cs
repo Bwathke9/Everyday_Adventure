@@ -1,4 +1,5 @@
 // Brennan Wathke 4/19/2025 Server Connection Script
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -85,15 +86,26 @@ public class GameDataController : MonoBehaviour
 
             yield return www.SendWebRequest();
 
-            if (www.result != UnityWebRequest.Result.Success)
+            Debug.Log($"Request Result: {www.result}");
+            Debug.Log($"Response Code: {www.responseCode}");
+
+            try
             {
-                Debug.LogError("Error: " + www.error);
-                OnPostGameDataResult?.Invoke(false, www.error);
+                if (www.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.LogError("Error: " + www.error);
+                    OnPostGameDataResult?.Invoke(false, www.error);
+                }
+                else
+                {
+                    Debug.Log("Response: " + www.downloadHandler.text);
+                    OnPostGameDataResult?.Invoke(true, www.downloadHandler.text);
+                }
             }
-            else
+            catch (System.Exception ex)
             {
-                Debug.Log("Response: " + www.downloadHandler.text);
-                OnPostGameDataResult?.Invoke(true, www.downloadHandler.text);
+                Debug.LogError($"Exception in PostGameData: {ex.Message}");
+                OnPostGameDataResult?.Invoke(false, ex.Message);
             }
         }
     }
@@ -162,5 +174,17 @@ public class GameDataController : MonoBehaviour
         {
             scoreList.text = scoreListBuilder.ToString();
         }
+    }
+
+    public void SubmitPlayerStats()
+    {
+        string level = "level_three";
+        string endTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        string levelTime = PlayerInformation.control.timeDisplay;
+        int levelScore = PlayerInformation.control.score;
+        int questionsAnswered = 0;
+        string initials = "AAA";
+
+        SubmitGameData(level, endTime, levelTime, levelScore, questionsAnswered, initials);
     }
 }
