@@ -125,7 +125,7 @@ namespace EthanTheHero
 				grounded = false;
 
 
-			WallSlidngMechanic();
+			WallSlidingMechanic();
 		}
 
         #endregion
