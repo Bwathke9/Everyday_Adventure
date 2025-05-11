@@ -14,10 +14,10 @@
     left: 0;
     top: 0;
     align-self: auto;
-    align-items: flex-start;
-    min-height: 30px;
-    max-height: 60px;
-    min-width: 100px;
+    align-items: center;
+    min-height: 145px;
+    max-height: 60%;
+    min-width: 220px;
     max-width: 30%;
     align-content: auto;
     justify-content: space-around;
@@ -45,6 +45,7 @@
     padding-right: 1%;
     padding-bottom: 1%;
     padding-left: 1%;
+    display: flex;
 }
 
 #topRightVisualElement {
@@ -52,9 +53,9 @@
     top: 0;
     align-self: auto;
     align-items: flex-start;
-    min-height: 30px;
-    max-height: 60px;
-    min-width: 100px;
+    min-height: 145px;
+    max-height: 60%;
+    min-width: 220px;
     max-width: 30%;
     align-content: auto;
     justify-content: space-around;

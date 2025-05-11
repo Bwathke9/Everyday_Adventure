@@ -28,10 +28,13 @@ public class PlayerInformation : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             control = this;
+            Debug.Log("PlayerInformation control is set to this instance");
         }
         else if (control != this)
         {
             Destroy(gameObject);
+            Debug.Log("PlayerInformation control is destroyed");
+            return;
         }
 
         currentHealth = maxHealth;
@@ -44,7 +47,20 @@ public class PlayerInformation : MonoBehaviour
     void Start()
     {
         myAnim = GetComponent<Animator>();
-        PlayerInformation.control.respawnPoint = FindObjectOfType<RespawnPoint>().transform;
+        
+        // Respawn the player from the last level
+        //RespawnPoint respawnPoint = FindObjectOfType<RespawnPoint>();
+        //if (respawnPoint != null)
+        //{
+        //    PlayerInformation.control.respawnPoint = respawnPoint.transform;
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("No respawn point found in the scene.");
+        //}
+        Respawn();
+        Debug.Log("Respawn on start");
+
     }
 
 
@@ -96,9 +112,11 @@ public class PlayerInformation : MonoBehaviour
     private void Respawn() {
         currentHealth = maxHealth;
 
-        if (respawnPoint != null) {
+        if (respawnPoint != null) 
+        {
         transform.position = respawnPoint.position;
-        isDead = false;
+            Debug.Log("Player respawned at: " + respawnPoint.position);
+            isDead = false;
         }
         else {
             Debug.LogWarning("Need to set respawnPoint");
