@@ -3,46 +3,52 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 namespace EthanTheHero
 {
-	public class PlayerMovement : MonoBehaviour
-	{
-		#region FIELD
+    public class PlayerMovement : MonoBehaviour
+    {
+        #region FIELD
 
-		[SerializeField] private PlayerMovementData data;
-		[SerializeField] private float lastOnGroundTime;
-		[SerializeField] private Transform groundCheckPoint;
-		[SerializeField] private Vector2 groundCheckSize = new Vector2(0.49f, 0.03f);
-		[SerializeField] private LayerMask groundLayer;
-		[SerializeField] private LayerMask wallLayer;
-		[SerializeField] private Transform WallCheck;
+        [SerializeField] private PlayerMovementData data;
+        [SerializeField] private float lastOnGroundTime;
+        [SerializeField] private Transform groundCheckPoint;
+        [SerializeField] private Vector2 groundCheckSize = new Vector2(0.49f, 0.03f);
+        [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private LayerMask wallLayer;
+        [SerializeField] private Transform WallCheckLeft;
+        [SerializeField] private Transform WallCheckRight;
+        // Super Speed Power-Up
+        [SerializeField] private float superSpeedMultiplier = 2f;
+        [SerializeField] private float superSpeedDuration = 10f;
+        private bool isSuperSpeedActive = false;
+        private float superSpeedEndTime = 0f;
 
-		[HideInInspector] public Vector2 move;
+        [HideInInspector] public Vector2 move;
 
-		private Rigidbody2D myBody;
-		private Animator myAnim;
+        private Rigidbody2D myBody;
+        private Animator myAnim;
 
-		//Dash
-		[HideInInspector] public bool isDashing;
-		private bool canDash = true;
-		private bool dashButtonPressed;
+        //Dash
+        [HideInInspector] public bool isDashing;
+        private bool canDash = true;
+        private bool dashButtonPressed;
 
-		//Jump
-		[HideInInspector] public bool grounded;
-		[HideInInspector] public bool isJumping;
-		private bool jumpButtonPressed;
+        //Jump
+        [HideInInspector] public bool grounded;
+        [HideInInspector] public bool isJumping;
+        private bool jumpButtonPressed;
 
-		//Wall Sliding and Wall Jump
-		[HideInInspector] public bool wallJump;
-		[HideInInspector] public bool wallSliding;
-		private RaycastHit2D wall;
-		private float jumpTime;
+        //Wall Sliding and Wall Jump
+        [HideInInspector] public bool wallJump;
+        [HideInInspector] public bool wallSliding;
+        private RaycastHit2D wall;
+        private float jumpTime;
 
         #endregion
 
         #region MONOBEHAVIOUR
         void Awake()
+
 		{
 			myBody = GetComponent<Rigidbody2D>();
 			myAnim = GetComponent<Animator>();
@@ -72,29 +78,35 @@ namespace EthanTheHero
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
         void Update()
-		{
-			if (isDashing || wallJump || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
-				return;
+        {
+            if (isDashing || wallJump || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
+                return;
 
-			lastOnGroundTime -= Time.deltaTime;
+            lastOnGroundTime -= Time.deltaTime;
 
-			//Input Handler
-			move.x = Input.GetAxisRaw("Horizontal");
-			dashButtonPressed = Input.GetKeyDown(KeyCode.W);
-			jumpButtonPressed = Input.GetButtonDown("Jump");
+            // Input Handler
+            move.x = Input.GetAxisRaw("Horizontal");
+            dashButtonPressed = Input.GetKeyDown(KeyCode.W);
+            jumpButtonPressed = Input.GetButtonDown("Jump");
 
-			jump();
+            jump();
 
-			if (move.x != 0)
-				CheckDirectionToFace(move.x > 0);
+            if (move.x != 0)
+                CheckDirectionToFace(move.x > 0);
 
-			if (dashButtonPressed && canDash && !wallSliding)
-				StartCoroutine(dash());
+            if (dashButtonPressed && canDash && !wallSliding)
+                StartCoroutine(dash());
 
-			if (wallSliding && jumpButtonPressed)
-				StartCoroutine(wallJumpMechanic());
+            if (wallSliding && jumpButtonPressed)
+                StartCoroutine(wallJumpMechanic());
 
-		}
+            // Check if super speed duration is over
+            if (isSuperSpeedActive && Time.time >= superSpeedEndTime)
+            {
+                isSuperSpeedActive = false;
+            }
+        }
+      
 
 		void FixedUpdate()
 		{
@@ -115,120 +127,145 @@ namespace EthanTheHero
 
 			WallSlidngMechanic();
 		}
+
         #endregion
 
         #region RUN
         private void run(float lerpAmount)
-		{
-			float targetSpeed = move.x * data.runMaxSpeed;
+        {
+            float speed = data.runMaxSpeed;
+            if (isSuperSpeedActive)
+                speed *= superSpeedMultiplier;
 
-			float accelRate;
+            float targetSpeed = move.x * speed;
 
-			targetSpeed = Mathf.Lerp(myBody.linearVelocity.x, targetSpeed, lerpAmount);
+            float accelRate;
 
-			//Calculate Acceleration and Decceleration
-			if (lastOnGroundTime > 0)
-				accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? data.runAccelAmount : data.runDeccelAmount;
-			else
-				accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? data.runAccelAmount * data.accelInAir : data.runDeccelAmount * data.deccelInAir;
+            targetSpeed = Mathf.Lerp(myBody.linearVelocity.x, targetSpeed, lerpAmount);
 
-			if (data.doConserveMomentum && Mathf.Abs(myBody.linearVelocity.x) > Mathf.Abs(targetSpeed) && Mathf.Sign(myBody.linearVelocity.x) == Mathf.Sign(targetSpeed) && Mathf.Abs(targetSpeed) > 0.01f && lastOnGroundTime < 0)
-				accelRate = 0;
+            // Calculate Acceleration and Deceleration
+            if (lastOnGroundTime > 0)
+                accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? data.runAccelAmount : data.runDeccelAmount;
+            else
+                accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? data.runAccelAmount * data.accelInAir : data.runDeccelAmount * data.deccelInAir;
 
-			float speedDif = targetSpeed - myBody.linearVelocity.x;
-			float movement = speedDif * accelRate;
+            if (data.doConserveMomentum && Mathf.Abs(myBody.linearVelocity.x) > Mathf.Abs(targetSpeed) && Mathf.Sign(myBody.linearVelocity.x) == Mathf.Sign(targetSpeed) && Mathf.Abs(targetSpeed) > 0.01f && lastOnGroundTime < 0)
+                accelRate = 0;
 
-			//Implementing run
-			myBody.AddForce(movement * Vector2.right, ForceMode2D.Force);
-		}
-		#endregion
+            float speedDif = targetSpeed - myBody.linearVelocity.x;
+            float movement = speedDif * accelRate;
 
-		#region DASH
-		private IEnumerator dash()
-		{
-			canDash = false;
-			isDashing = true;
-			float oriGrav = myBody.gravityScale;
-			myBody.gravityScale = 0f;
+            // Implementing run
+            myBody.AddForce(movement * Vector2.right, ForceMode2D.Force);
+        }
+        #endregion
 
-			myBody.linearVelocity = new Vector2(transform.localScale.x * data.dashPower, 0f);
-			yield return new WaitForSeconds(data.dashingTime);
-			if (move.x > 0)
-			{
-				myBody.linearVelocity = new Vector2(data.runMaxSpeed, myBody.linearVelocity.y);
-			}
-			else if (move.x < 0)
-			{
-				myBody.linearVelocity = new Vector2(-data.runMaxSpeed, myBody.linearVelocity.y);
-			}
-			myBody.gravityScale = oriGrav;
+        #region DASH
+        private IEnumerator dash()
+        {
+            canDash = false;
+            isDashing = true;
+            float oriGrav = myBody.gravityScale;
+            myBody.gravityScale = 0f;
 
-			isDashing = false;
-			yield return new WaitForSeconds(data.dashingCoolDown);
-			canDash = true;
-		}
-		#endregion
+            myBody.linearVelocity = new Vector2(transform.localScale.x * data.dashPower, 0f);
+            yield return new WaitForSeconds(data.dashingTime);
+            if (move.x > 0)
+            {
+                myBody.linearVelocity = new Vector2(data.runMaxSpeed, myBody.linearVelocity.y);
+            }
+            else if (move.x < 0)
+            {
+                myBody.linearVelocity = new Vector2(-data.runMaxSpeed, myBody.linearVelocity.y);
+            }
+            myBody.gravityScale = oriGrav;
 
-		#region JUMP
-		private void jump()
-		{
+            isDashing = false;
+            yield return new WaitForSeconds(data.dashingCoolDown);
+            canDash = true;
+        }
+        #endregion
 
-			if (grounded)
-				isJumping = false;
+        #region JUMP
+        private void jump()
+        {
+            if (grounded)
+                isJumping = false;
 
+            if (jumpButtonPressed && grounded)
+            {
+                isJumping = true;
+                myBody.linearVelocity = new Vector2(myBody.linearVelocity.x, data.jumpHeight);
+            }
+        }
+        #endregion
 
-			if (jumpButtonPressed && grounded)
-			{
-				isJumping = true;
-				myBody.linearVelocity = new Vector2(myBody.linearVelocity.x, data.jumpHeight);
-			}
-		}
-		#endregion
+        #region Wall Sliding and Wall Jump
+        private void WallSlidingMechanic()
+        {
+            wall = Physics2D.Raycast(WallCheckRight.position, Vector2.right, data.wallDistance, wallLayer);
+            Debug.DrawRay(WallCheckRight.position, Vector2.right * data.wallDistance, Color.red);
 
-		#region Wall Sliding and Wall Jump
-		private void WallSlidngMechanic()
-		{
-			wall = Physics2D.Raycast(WallCheck.position, new Vector2(data.wallDistance, 0f), data.wallDistance, wallLayer);
-			Debug.DrawRay(WallCheck.position, new Vector2(data.wallDistance, 0f), Color.red);
+            RaycastHit2D wallLeft = Physics2D.Raycast(WallCheckLeft.position, Vector2.left, data.wallDistance, wallLayer);
+            Debug.DrawRay(WallCheckLeft.position, Vector2.left * data.wallDistance, Color.red);
 
+            if (!grounded && (wall || wallLeft))
+            {
+                wallSliding = true;
+                jumpTime = Time.time + data.wallJumpTime;
+            }
+            else if (jumpTime < Time.time)
+            {
+                wallSliding = false;
+            }
+            else
+            {
+                wallSliding = false;
+            }
 
-			if (!grounded && wall)
-			{
-				wallSliding = true;
-				jumpTime = Time.time + data.wallJumpTime;
-			}
-			else if (jumpTime < Time.time)
-				wallSliding = false;
-			else
-				wallSliding = false;
+            if (wallSliding)
+                myBody.linearVelocity = new Vector2(myBody.linearVelocity.x, Mathf.Clamp(myBody.linearVelocity.y, -data.wallSlideSpeed, float.MaxValue));
+        }
 
-			if (wallSliding)
-				myBody.linearVelocity = new Vector2(myBody.linearVelocity.x, Mathf.Clamp(myBody.linearVelocity.y, -data.wallSlideSpeed, float.MaxValue));
+        private IEnumerator wallJumpMechanic()
+        {
+            wallJump = true;
+            if (transform.localScale.x == -1f)
+                myBody.linearVelocity = new Vector2(data.wallJumpingXPower, data.wallJumpingYPower);
+            else
+                myBody.linearVelocity = new Vector2(-data.wallJumpingXPower, data.wallJumpingYPower);
+            yield return new WaitForSeconds(data.WallJumpTimeInSecond);
+            wallJump = false;
+        }
+        #endregion
 
-		}
+        #region OTHER
+        private void CheckDirectionToFace(bool isMovingRight)
+        {
+            Vector3 tem = transform.localScale;
+            if (!isMovingRight)
+                tem.x = -1f;
+            else
+                tem.x = 1f;
+            transform.localScale = tem;
+        }
+        #endregion
 
-		private IEnumerator wallJumpMechanic()
-		{
-			wallJump = true;
-			if (transform.localScale.x == -1f)
-				myBody.linearVelocity = new Vector2(data.wallJumpingXPower, data.wallJumpingYPower);
-			else
-				myBody.linearVelocity = new Vector2(-data.wallJumpingXPower, data.wallJumpingYPower);
-			yield return new WaitForSeconds(data.WallJumpTimeInSecond);
-			wallJump = false;
-		}
-		#endregion
+        #region SUPER SPEED
+        public void ActivateSuperSpeed()
+        {
+            isSuperSpeedActive = true;
+            superSpeedEndTime = Time.time + superSpeedDuration;
+        }
 
-		#region OTHER
-		private void CheckDirectionToFace(bool isMovingRight)
-		{
-			Vector3 tem = transform.localScale;
-			if (!isMovingRight)
-				tem.x = -1f;
-			else
-				tem.x = 1f;
-			transform.localScale = tem;
-		}
-		#endregion
-	}
+        public void SetSuperSpeed(bool isActive)
+        {
+            isSuperSpeedActive = isActive;
+            if (isActive)
+            {
+                superSpeedEndTime = Time.time + superSpeedDuration;
+            }
+        }
+        #endregion
+    }
 }

@@ -9,12 +9,6 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
-
-    public void MainMenuLevelSelect()
-    {
-        SceneManager.LoadScene("LevelSelect");
-    }
-
     public void MainMenuHighScores()
     {
         SceneManager.LoadScene("HighScores");
