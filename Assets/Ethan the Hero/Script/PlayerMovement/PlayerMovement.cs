@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace EthanTheHero
@@ -45,7 +47,31 @@ namespace EthanTheHero
 			myBody = GetComponent<Rigidbody2D>();
 			myAnim = GetComponent<Animator>();
 		}
-		void Update()
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            Transform newGroundCheckPoint = transform.Find("GroundCheckPoint");
+
+            if (newGroundCheckPoint != null)
+            {
+                groundCheckPoint = newGroundCheckPoint;
+				Debug.Log("GroundCheck found in the scene.");
+            }
+            else
+            {
+                Debug.LogWarning("GroundCheck not found in the scene.");
+            }
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+        void Update()
 		{
 			if (isDashing || wallJump || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
 				return;
@@ -78,7 +104,7 @@ namespace EthanTheHero
 			if (!wallSliding)
 				run(1);
 			//checks if set box overlaps with ground
-			if (Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer))
+			if (groundCheckPoint != null && Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer))
 			{
 				lastOnGroundTime = 0.1f;
 				grounded = true;
