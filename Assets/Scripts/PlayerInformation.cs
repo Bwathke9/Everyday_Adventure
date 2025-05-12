@@ -97,6 +97,10 @@ public class PlayerInformation : MonoBehaviour
     private void CheckHealth() {
         if (currentHealth <= 0 && !isDead) {
             isDead = true;
+            if (score > 0)
+            {
+                score -= 50;
+            }
             StartCoroutine(RespawnDelay(1.4f));
         }
     }
