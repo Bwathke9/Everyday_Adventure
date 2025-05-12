@@ -24,13 +24,14 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            isCollected = true;            
-        }
-        // add score to player Adam Nixdorf
-        PlayerInformation.control.SetScore (10);        
+            isCollected = true;
 
-        Destroy(gameObject);
-        AudioSource.PlayClipAtPoint(pickupSound, transform.position);
-    }
+            // add score to player Adam Nixdorf
+            PlayerInformation.control.SetScore(10);
+
+            Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+        }
+        }
 
 }
