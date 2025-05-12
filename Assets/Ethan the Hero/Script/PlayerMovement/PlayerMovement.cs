@@ -23,6 +23,12 @@ namespace EthanTheHero
         private bool isSuperSpeedActive = false;
         private float superSpeedEndTime = 0f;
 
+        // High Jump Power-up
+        [SerializeField] private float highJumpMulitplier = 1.5f;
+        [SerializeField] private float highJumpDuration = 10f;
+        private bool isHighJumpActive = false;
+        private float highJumpEndTime = 0f;
+
         [HideInInspector] public Vector2 move;
 
         private Rigidbody2D myBody;
@@ -104,6 +110,11 @@ namespace EthanTheHero
             if (isSuperSpeedActive && Time.time >= superSpeedEndTime)
             {
                 isSuperSpeedActive = false;
+            }
+
+            if (isHighJumpActive && Time.time >= highJumpEndTime)
+            {
+                isHighJumpActive = false;
             }
         }
       
@@ -192,6 +203,14 @@ namespace EthanTheHero
             if (grounded)
                 isJumping = false;
 
+            float jumpForce = data.jumpHeight;
+
+            if (isHighJumpActive)
+            {
+                jumpForce *= highJumpMulitplier;
+            }
+                
+
             if (jumpButtonPressed && grounded)
             {
                 isJumping = true;
@@ -264,6 +283,23 @@ namespace EthanTheHero
             if (isActive)
             {
                 superSpeedEndTime = Time.time + superSpeedDuration;
+            }
+        }
+        #endregion
+
+        #region HIGH JUMP
+        public void ActivateHighJump()
+        {
+            isHighJumpActive = true;
+            highJumpEndTime = Time.time + highJumpDuration;
+        }
+
+        public void SetHighJump(bool isActive)
+        {
+            isHighJumpActive = isActive;
+            if (!isActive)
+            {
+                highJumpEndTime = Time.time + highJumpDuration;
             }
         }
         #endregion
