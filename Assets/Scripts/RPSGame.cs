@@ -61,8 +61,6 @@ public class RPSGame : MonoBehaviour
                 CPUScore++;
             }
 
-            rounds++;
-
             UpdateScoreRounds();
 
             if (rounds == 3)
@@ -101,8 +99,10 @@ public class RPSGame : MonoBehaviour
             (playerChoice == "Paper" && CPUChoice == "Rock") ||
             (playerChoice == "Scissors" && CPUChoice == "Paper"))
         {
+            rounds++;
             return "You win!";
         }
+        rounds++;
         return "CPU wins!";
     }
 
