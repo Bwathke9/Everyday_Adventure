@@ -165,14 +165,14 @@ public class HealthQuestion : MonoBehaviour
         if (answer == correctAnswer)
         {
             // Correct answer
-            displayText = ("Correct answer selected, your health will be restored");
+            displayText = ("Correct answer selected, your health will be restored.");
             // Add code to restore health here
             PlayerInformation.control.Heal();
         }
         else
         {
             // Incorrect answer
-           displayText = ("Incorrect answer selected you will have to try and survive");
+           displayText = ("Incorrect answer selected, you will have to try and survive the level without restored health.");
             // Add code to handle incorrect answer here
         }
         // Hide the health challenge UI
