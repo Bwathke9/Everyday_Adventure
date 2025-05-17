@@ -136,7 +136,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.24, y: 0.56}
+  m_Size: {x: 0.4, y: 0.56}
   m_EdgeRadius: 0
 --- !u!70 &4193963475481531848
 CapsuleCollider2D:
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b97edad2e8d69ae48bc85d95c1b36535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: TTT
+  sceneToLoad: RPS
   transitionDelay: 2
   polePrefab: {fileID: 1280701852367138595}
   flagPolePrefab: {fileID: 3471084040605571168}
