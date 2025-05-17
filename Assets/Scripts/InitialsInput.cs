@@ -110,6 +110,7 @@ public class InitialsInput : MonoBehaviour
         }
 
         gameEndScript.OnSubmissionResultEvent -= OnSubmissionComplete;
+        PlayerInformation.control.ResetPlayerInfo();
         SceneManager.LoadScene("Highscores");
     }
 

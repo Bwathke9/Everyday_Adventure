@@ -40,7 +40,7 @@ public class PlayerInformation : MonoBehaviour
         currentHealth = maxHealth;
         score = 0;
         level = 1;
-        powerUp = 55;
+        powerUp = 0;
         timeDisplay = "00:00:000";
     }
 
@@ -59,6 +59,8 @@ public class PlayerInformation : MonoBehaviour
         //    Debug.LogWarning("No respawn point found in the scene.");
         //}
         Respawn();
+
+        
         Debug.Log("Respawn on start");
 
     }
@@ -121,6 +123,7 @@ public class PlayerInformation : MonoBehaviour
         transform.position = respawnPoint.position;
             Debug.Log("Player respawned at: " + respawnPoint.position);
             isDead = false;
+            isPaused = false;
         }
         else {
             Debug.LogWarning("Need to set respawnPoint");
@@ -167,5 +170,14 @@ public class PlayerInformation : MonoBehaviour
     public void SetScore(int score)
     {
         this.score += score;
+    }
+    public void ResetPlayerInfo()
+    {
+        currentHealth = maxHealth;
+        score = 0;
+        level = 1;
+        powerUp = 0;
+        timeDisplay = "00:00:000";
+        timer = 0;
     }
 }
