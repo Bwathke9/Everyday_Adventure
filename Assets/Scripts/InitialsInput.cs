@@ -110,7 +110,15 @@ public class InitialsInput : MonoBehaviour
         }
 
         gameEndScript.OnSubmissionResultEvent -= OnSubmissionComplete;
-        PlayerInformation.control.ResetPlayerInfo();
+        if (SceneLoader.instance != null)
+        {
+            SceneLoader.instance.ResetGame();
+        }
+        else
+        {
+            Debug.LogError("SceneLoader instance is null!");
+        }
+        
         SceneManager.LoadScene("Highscores");
     }
 
