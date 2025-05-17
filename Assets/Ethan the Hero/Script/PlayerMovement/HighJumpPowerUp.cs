@@ -45,6 +45,7 @@ public class HighJumpPowerUp : MonoBehaviour
             }
 
             HidePowerUpObject();
+
         }        
     }
 
@@ -60,9 +61,11 @@ public class HighJumpPowerUp : MonoBehaviour
     private void HidePowerUpObject()
     {
         var renderer = GetComponent<Renderer>();
-        if(renderer != null)
+        var collider = GetComponent<Collider2D>();
+        if (renderer != null)
         {
             renderer.enabled = false;
+            collider.enabled = false; // Disable the collider to prevent further interactions
         }
         else
         {

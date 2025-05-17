@@ -82,27 +82,23 @@ public class PlayerInformation : MonoBehaviour
     }
     // This function is called when the player collects a power-up
     // todo: add a powerUp system
-    private void SetPowerUp(int v)
+    public void SetPowerUp(int v)
     {
-       float randomPower = UnityEngine.Random.Range(0f, v);
-        if (powerUp > 0)
-        {
-            powerUp -= randomPower;
-        }
-        else
-        {
-            powerUp += randomPower;
-        }
-        powerUp = Mathf.Clamp(powerUp, 0, 100);
+       powerUp = control.powerUp;
+        
     }
 
     // Used to check if player has died
     private void CheckHealth() {
         if (currentHealth <= 0 && !isDead) {
             isDead = true;
-            if (score > 0)
+            if (score >= 50)
             {
                 score -= 50;
+            }
+            else
+            {
+                score = 0;
             }
             StartCoroutine(RespawnDelay(1.4f));
         }

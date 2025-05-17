@@ -22,6 +22,7 @@ namespace EthanTheHero
         [SerializeField] private float superSpeedDuration = 10f;
         private bool isSuperSpeedActive = false;
         private float superSpeedEndTime = 0f;
+        public float powerUpLevel = 0f; // Power-up level (0 = no power-up, 100 = full power up)
 
         // High Jump Power-up
         [SerializeField] private float highJumpMulitplier = 1.5f;
@@ -110,16 +111,33 @@ namespace EthanTheHero
             if (isSuperSpeedActive && Time.time >= superSpeedEndTime)
             {
                 isSuperSpeedActive = false;
+                powerUpLevel = 0f; // Reset power-up level
             }
 
+            // Check if high jump duration is over
             if (isHighJumpActive && Time.time >= highJumpEndTime)
             {
                 isHighJumpActive = false;
+                powerUpLevel = 0f; // Reset power-up level
             }
-        }
-      
+            // Calculate the power-up level based on the duration
+            if (isSuperSpeedActive)
+            {
+                powerUpLevel = (Mathf.Clamp01((superSpeedEndTime - Time.time) / superSpeedDuration) * 100);
+                Debug.Log("Super Speed Power-Up Level: " + powerUpLevel);
+            }
+            else if (isHighJumpActive)
+            {
+                powerUpLevel = (Mathf.Clamp01((highJumpEndTime - Time.time) / highJumpDuration) * 100);
+            }
+            
+          
 
-		void FixedUpdate()
+
+        }
+
+
+        void FixedUpdate()
 		{
 			if (isDashing || wallJump || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
 				return;
@@ -275,6 +293,9 @@ namespace EthanTheHero
         {
             isSuperSpeedActive = true;
             superSpeedEndTime = Time.time + superSpeedDuration;
+            Debug.Log("Super Speed Activated: " + superSpeedDuration);
+            Debug.Log("Super Speed End Time: " + superSpeedEndTime);
+            Debug.Log("Current Time: " + Time.time);    
         }
 
         public void SetSuperSpeed(bool isActive)
