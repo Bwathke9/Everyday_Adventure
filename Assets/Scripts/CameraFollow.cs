@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour
         if (view == null)
         {
             view = GameObject.FindGameObjectWithTag("Player").transform;
-            Debug.LogError("Player object is not assigned in the CameraFollow script.");
+            Debug.Log("Player object is not assigned in the CameraFollow script.");
            
         }
         // Calculate the target position for the camera

@@ -28,7 +28,7 @@ public class PlayerInformation : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             control = this;
-            Debug.Log("PlayerInformation control is set to this instance");
+        Debug.Log("PlayerInformation control is set to this instance");
         }
         else if (control != this)
         {
@@ -40,26 +40,29 @@ public class PlayerInformation : MonoBehaviour
         currentHealth = maxHealth;
         score = 0;
         level = 1;
-        powerUp = 55;
+        powerUp = 0;
         timeDisplay = "00:00:000";
     }
 
     void Start()
     {
         myAnim = GetComponent<Animator>();
-        
+
         // Respawn the player from the last level
         //RespawnPoint respawnPoint = FindObjectOfType<RespawnPoint>();
-        //if (respawnPoint != null)
-        //{
-        //    PlayerInformation.control.respawnPoint = respawnPoint.transform;
-        //}
-        //else
-        //{
-        //    Debug.LogWarning("No respawn point found in the scene.");
-        //}
-        Respawn();
-        Debug.Log("Respawn on start");
+        if (respawnPoint != null)
+        {
+            Respawn();
+            Debug.Log("Respawn on start");
+        }
+        else
+        {
+            Debug.LogWarning("No respawn point found in the scene.");
+        }
+        
+
+        
+        
 
     }
 
@@ -113,7 +116,7 @@ public class PlayerInformation : MonoBehaviour
     }
 
     // Respawning player
-    private void Respawn() {
+    public void Respawn() {
         currentHealth = maxHealth;
 
         if (respawnPoint != null) 
@@ -121,6 +124,7 @@ public class PlayerInformation : MonoBehaviour
         transform.position = respawnPoint.position;
             Debug.Log("Player respawned at: " + respawnPoint.position);
             isDead = false;
+            isPaused = false;
         }
         else {
             Debug.LogWarning("Need to set respawnPoint");
@@ -167,5 +171,14 @@ public class PlayerInformation : MonoBehaviour
     public void SetScore(int score)
     {
         this.score += score;
+    }
+    public void ResetPlayerInfo()
+    {
+        currentHealth = maxHealth;
+        score = 0;
+        level = 1;
+        powerUp = 0;
+        timeDisplay = "00:00:000";
+        timer = 0;
     }
 }
