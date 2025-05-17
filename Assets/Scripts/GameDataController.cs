@@ -167,7 +167,7 @@ public class GameDataController : MonoBehaviour
 
         foreach (var score in topScores)
         {
-            scoreListBuilder.AppendLine($"{score.initials} | {score.level_time} | Score: {score.level_score}");
+            scoreListBuilder.AppendLine($"{score.initials} Time: {score.level_time} Score: {score.level_score}");
         }
 
         if (scoreList != null)
