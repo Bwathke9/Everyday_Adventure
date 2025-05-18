@@ -13,5 +13,6 @@ public class StartTimer : MonoBehaviour
             }
 
         }
+        PlayerInformation.control.Heal();
     }
 }
