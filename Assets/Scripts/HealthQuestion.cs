@@ -61,7 +61,7 @@ public class HealthQuestion : MonoBehaviour
         PauseGame.pauseResumeGame();
         
         SetQuestion();
-        Debug.Log("Collision detected with " + collision.gameObject.name);
+        //Debug.Log("Collision detected with " + collision.gameObject.name);
         ToggleHealtChallenge();
     }
 
@@ -79,7 +79,7 @@ public class HealthQuestion : MonoBehaviour
             Debug.LogError("No .json file found.");
             return;
         }
-        Debug.Log("JSON file found: " + jsonFile.name);
+        //Debug.Log("JSON file found: " + jsonFile.name);
         // Deserialize the JSON file into a QuestionList object
         QuestionList questionList = JsonUtility.FromJson<QuestionList>(jsonFile.text);
         if (questionList == null || questionList.questions == null)
@@ -88,10 +88,10 @@ public class HealthQuestion : MonoBehaviour
             return;
         }
         questions = questionList.questions;
-        for (int i = 0; i < questions.Count; i++)
-        {
-            Debug.Log("Question " + i + ": " + questions[i].questionText);
-        }
+        //for (int i = 0; i < questions.Count; i++)
+        //{
+        //    Debug.Log("Question " + i + ": " + questions[i].questionText);
+        //}
     }
     private void SetQuestion()
     {
@@ -107,9 +107,9 @@ public class HealthQuestion : MonoBehaviour
 
         // get a random question from the list
         int randomIndex = UnityEngine.Random.Range(0, questions.Count);
-        Debug.Log("Random index: " + randomIndex);
+        //Debug.Log("Random index: " + randomIndex);
         Question question = questions[randomIndex];
-        Debug.Log("Question: " + question.questionText);
+        //Debug.Log("Question: " + question.questionText);
         questionText = question.questionText;
         answerA = question.answerA;
         answerB = question.answerB;
@@ -158,7 +158,7 @@ public class HealthQuestion : MonoBehaviour
                 correctAnswer = "D";
                 break;
             default:
-                Debug.LogError("Invalid correct answer index: " + correctAnswerIndex);
+                //Debug.LogError("Invalid correct answer index: " + correctAnswerIndex);
                 break;
         }
 
@@ -180,7 +180,7 @@ public class HealthQuestion : MonoBehaviour
         if (updateWindow.instance != null)
         {
             updateWindow.instance.DisplayUpdateWindow(displayText);
-            Debug.Log("updateWindow instance is not null" + displayText);
+            //Debug.Log("updateWindow instance is not null" + displayText);
         }
         else
         {

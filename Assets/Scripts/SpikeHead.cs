@@ -115,33 +115,16 @@ public class SpikeHead : MonoBehaviour
         {
             PlayerInformation.control.TakeDamage(damage);
         }
-
     }
-
     
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //Debug.Log("Collision stay detected with: " + collision.gameObject.name);
-        float damageTimer = 10f;
+        
         // Check if the object is the player
         if (collision.CompareTag("Player"))
-        {
-            //if (damageTimer >= 0)
-            //{
-            //    WaitForSeconds wait = new WaitForSeconds(damageTimer);
-            //    // Wait for the specified time
-            //    damageTimer -= 1;
-            //    Debug.Log("Damage timer: " + damageTimer);                
-            //}
-            //else
-            //{
+        {           
                 // Deal damage to the player
-                PlayerInformation.control.TakeDamage(damage/100);
-                // Reset the timer
-                damageTimer = 1f;
-                Debug.Log("Stay Damage dealt to player: " + damage);
-            //}
+                PlayerInformation.control.TakeDamage(damage/100);            
         }
     }
-
 }

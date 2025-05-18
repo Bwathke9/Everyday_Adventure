@@ -28,7 +28,7 @@ public class PlayerInformation : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             control = this;
-        Debug.Log("PlayerInformation control is set to this instance");
+        //Debug.Log("PlayerInformation control is set to this instance");
         }
         else if (control != this)
         {
@@ -53,7 +53,7 @@ public class PlayerInformation : MonoBehaviour
         if (respawnPoint != null)
         {
             Respawn();
-            Debug.Log("Respawn on start");
+            //Debug.Log("Respawn on start");
         }
         else
         {
@@ -116,7 +116,7 @@ public class PlayerInformation : MonoBehaviour
         if (respawnPoint != null) 
         {
         transform.position = respawnPoint.position;
-            Debug.Log("Player respawned at: " + respawnPoint.position);
+            //Debug.Log("Player respawned at: " + respawnPoint.position);
             isDead = false;
             isPaused = false;
         }

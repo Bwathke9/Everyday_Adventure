@@ -71,7 +71,7 @@ namespace EthanTheHero
             if (newGroundCheckPoint != null)
             {
                 groundCheckPoint = newGroundCheckPoint;
-				Debug.Log("GroundCheck found in the scene.");
+				//Debug.Log("GroundCheck found in the scene.");
             }
             else
             {
@@ -283,9 +283,9 @@ namespace EthanTheHero
         {
             isSuperSpeedActive = true;
             superSpeedEndTime = Time.time + superSpeedDuration;
-            Debug.Log("Super Speed Activated: " + superSpeedDuration);
-            Debug.Log("Super Speed End Time: " + superSpeedEndTime);
-            Debug.Log("Current Time: " + Time.time);    
+            //Debug.Log("Super Speed Activated: " + superSpeedDuration);
+            //Debug.Log("Super Speed End Time: " + superSpeedEndTime);
+            //Debug.Log("Current Time: " + Time.time);    
         }
 
         public void SetSuperSpeed(bool isActive)

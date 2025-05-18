@@ -9,36 +9,21 @@ public class SceneLoader : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("SceneLoader Awake called");
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            Debug.Log("SceneLoader instance set to this instance");
+            //Debug.Log("SceneLoader instance set to this instance");
         }
         else if (instance != this)
         {
             Destroy(gameObject);
-            Debug.Log("SceneLoader instance destroyed");
+            //Debug.Log("SceneLoader instance destroyed");
             return;
         }
-        //// Check if the player already exists in the scene
-        //if (FindAnyObjectByType<PlayerInformation>() == null)
-        //{
-        //    if (Ethan != null)
-        //    {
-        //        GameObject player = Instantiate(Ethan);
-        //        DontDestroyOnLoad(player);
-        //        Debug.Log("Spawned player");
-        //    }
-        //    else
-        //    {
-        //        Debug.LogError("Ethan is null");
-        //    }
-           
-        //}
+        
         SceneManager.sceneLoaded += OnSceneLoaded;
-        Debug.Log("SceneLoader Awake completed");
+        //Debug.Log("SceneLoader Awake completed");
 
     }
 
@@ -59,14 +44,14 @@ public class SceneLoader : MonoBehaviour
                     PlayerInformation.control = info;
                     info.respawnPoint = respawnPoint.transform;
                     info.Respawn();
-                    Debug.Log("New player instantiated");
+                    //Debug.Log("New player instantiated");
                 }
             }  
             else
             {
 
                 PlayerInformation.control.respawnPoint = respawnPoint.transform;
-                Debug.Log("Respawn point set to: " + respawnPoint.transform.position);
+                //Debug.Log("Respawn point set to: " + respawnPoint.transform.position);
                 PlayerInformation.control.transform.position = respawnPoint.transform.position;
                 //PlayerInformation.control.respawnPoint = respawnPoint.transform;
             }        

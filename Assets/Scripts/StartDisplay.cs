@@ -15,7 +15,7 @@ public class StartDisplay : MonoBehaviour
         if (updateWindow.instance != null)
         {
             updateWindow.instance.DisplayUpdateWindow(startMessage);
-            Debug.Log("updateWindow instance is not null" + startMessage);
+            //Debug.Log("updateWindow instance is not null" + startMessage);
         }
         else
         {
