@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2652215643216118691}
   - component: {fileID: 5275406877835675835}
   - component: {fileID: 2524612079863499518}
+  - component: {fileID: 493491221306040172}
   m_Layer: 0
   m_Name: Orange
   m_TagString: Untagged
@@ -297,3 +298,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &493491221306040172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7067743984737425353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7857a8ce020f67d46850e9494129a133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xSpeed: 1
+  xAmplitude: 2
+  ySpeed: 1
+  yAmplitude: 2

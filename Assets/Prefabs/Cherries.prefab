@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2557254266450209237}
   - component: {fileID: 1989312619791280628}
   - component: {fileID: -457994493335764040}
+  - component: {fileID: 4208683250680590103}
   m_Layer: 0
   m_Name: Cherries
   m_TagString: Untagged
@@ -297,3 +298,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4208683250680590103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627752580654727823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086a11a5d630fc744b5df7100c1648db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.5
+  height: 2
