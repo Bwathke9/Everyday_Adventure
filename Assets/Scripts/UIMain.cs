@@ -98,7 +98,11 @@ public class UIMain : MonoBehaviour
         pauseButton.clicked += TogglePopUp;
         resumeButton.clicked += TogglePopUp;
         
-        mainMenuButton.clicked += () => SceneManager.LoadScene("MainMenu");
+        mainMenuButton.clicked += () =>
+        {
+            SceneLoader.instance.ResetGame();
+            SceneManager.LoadScene("MainMenu");
+        };
         exitGameButton.clicked += ExitGame;
 
         scoreOut = new Label();
