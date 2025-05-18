@@ -59,9 +59,7 @@ public class PlayerInformation : MonoBehaviour
         {
             Debug.LogWarning("No respawn point found in the scene.");
         }
-        
-
-        
+           
         
 
     }
@@ -82,9 +80,9 @@ public class PlayerInformation : MonoBehaviour
     }
     // This function is called when the player collects a power-up
     // todo: add a powerUp system
-    public void SetPowerUp(int v)
+    public void SetPowerUp(float powerUpLevel)
     {
-       powerUp = control.powerUp;
+       this.powerUp = powerUpLevel;
         
     }
 

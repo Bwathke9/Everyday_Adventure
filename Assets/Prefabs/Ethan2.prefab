@@ -183,9 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8b53c71217aac47bd9acae926ce6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicAttack01Power: 0.5
-  basicAttack02Power: 0.5
-  basicAttack03Power: 0.9
 --- !u!114 &8401410171919322426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +209,9 @@ MonoBehaviour:
   WallCheckRight: {fileID: 4704987260280547530}
   superSpeedMultiplier: 2
   superSpeedDuration: 10
+  powerUpLevel: 0
+  highJumpMulitplier: 1.5
+  highJumpDuration: 10
   move: {x: 0, y: 0}
   isDashing: 0
   grounded: 0
@@ -348,6 +348,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 4685108835411587510, guid: f4bea71ea9a298247b97adb41250bf35, type: 3}
   isPaused: 0
   isDead: 0
+  powerUpIndicator: {fileID: -6892470427966981100, guid: 4f3d909f9facca644b96e53173ae1426, type: 3}
 --- !u!1 &8883897484455870990
 GameObject:
   m_ObjectHideFlags: 0

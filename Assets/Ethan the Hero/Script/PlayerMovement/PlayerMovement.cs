@@ -22,8 +22,7 @@ namespace EthanTheHero
         [SerializeField] private float superSpeedDuration = 10f;
         private bool isSuperSpeedActive = false;
         private float superSpeedEndTime = 0f;
-        public float powerUpLevel = 0f; // Power-up level (0 = no power-up, 100 = full power up)
-
+        
         // High Jump Power-up
         [SerializeField] private float highJumpMulitplier = 1.5f;
         [SerializeField] private float highJumpDuration = 10f;
@@ -111,25 +110,16 @@ namespace EthanTheHero
             if (isSuperSpeedActive && Time.time >= superSpeedEndTime)
             {
                 isSuperSpeedActive = false;
-                powerUpLevel = 0f; // Reset power-up level
+                
             }
 
             // Check if high jump duration is over
             if (isHighJumpActive && Time.time >= highJumpEndTime)
             {
                 isHighJumpActive = false;
-                powerUpLevel = 0f; // Reset power-up level
+                
             }
-            // Calculate the power-up level based on the duration
-            if (isSuperSpeedActive)
-            {
-                powerUpLevel = (Mathf.Clamp01((superSpeedEndTime - Time.time) / superSpeedDuration) * 100);
-                Debug.Log("Super Speed Power-Up Level: " + powerUpLevel);
-            }
-            else if (isHighJumpActive)
-            {
-                powerUpLevel = (Mathf.Clamp01((highJumpEndTime - Time.time) / highJumpDuration) * 100);
-            }
+           
             
           
 
