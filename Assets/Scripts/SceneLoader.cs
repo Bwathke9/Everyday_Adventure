@@ -44,6 +44,7 @@ public class SceneLoader : MonoBehaviour
                     PlayerInformation.control = info;
                     info.respawnPoint = respawnPoint.transform;
                     info.Respawn();
+                    info.currentHealth = info.maxHealth;
                     //Debug.Log("New player instantiated");
                 }
             }  
