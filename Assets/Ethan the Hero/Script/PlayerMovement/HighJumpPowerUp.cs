@@ -13,7 +13,7 @@ public class HighJumpPowerUp : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerMovement = GameObject.FindAnyObjectByType<PlayerMovement>();
+        playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
 
         uiDocument = GameObject.Find("uIMain").GetComponent<UIDocument>();
 
