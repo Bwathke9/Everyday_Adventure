@@ -115,15 +115,16 @@ public class SpikeHead : MonoBehaviour
         {
             PlayerInformation.control.TakeDamage(damage);
         }
-
     }
-
-    private void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!playOnStart)
-        {
-           playOnStart = true;
+        
+        // Check if the object is the player
+        if (collision.CompareTag("Player"))
+        {           
+                // Deal damage to the player
+                PlayerInformation.control.TakeDamage(damage/100);            
         }
     }
-
 }

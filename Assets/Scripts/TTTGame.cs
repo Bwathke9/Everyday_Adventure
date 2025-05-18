@@ -17,7 +17,7 @@ public class TTTGame : MonoBehaviour
     void Start()
     {
         ResetGame();
-        resultText.text = "Make your move!";
+        resultText.text = "Welcome to Tic-Tac-Toe, make your move!";
     }
 
     // Handling button press actions
@@ -31,7 +31,11 @@ public class TTTGame : MonoBehaviour
         
         if (CheckForWin())
         {
-            resultText.text = currentPlayer == Player.PlayerX ? "You have won!" : "You have lost!";
+            resultText.text = currentPlayer == Player.PlayerX ? "You have won! +200 Points" : "You have lost!";
+            if (resultText.text == "You have won! +200 Points") 
+            {
+                PlayerInformation.control.score = PlayerInformation.control.score + 200;
+            }
             SetButtonsInteractable(false);
             ShowContinueButton();
             return;

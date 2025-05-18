@@ -22,7 +22,7 @@ namespace EthanTheHero
         [SerializeField] private float superSpeedDuration = 10f;
         private bool isSuperSpeedActive = false;
         private float superSpeedEndTime = 0f;
-
+        
         // High Jump Power-up
         [SerializeField] private float highJumpMulitplier = 1.5f;
         [SerializeField] private float highJumpDuration = 10f;
@@ -71,7 +71,7 @@ namespace EthanTheHero
             if (newGroundCheckPoint != null)
             {
                 groundCheckPoint = newGroundCheckPoint;
-				Debug.Log("GroundCheck found in the scene.");
+				//Debug.Log("GroundCheck found in the scene.");
             }
             else
             {
@@ -92,7 +92,7 @@ namespace EthanTheHero
 
             // Input Handler
             move.x = Input.GetAxisRaw("Horizontal");
-            dashButtonPressed = Input.GetKeyDown(KeyCode.W);
+            //dashButtonPressed = Input.GetKeyDown(KeyCode.W);
             jumpButtonPressed = Input.GetButtonDown("Jump");
 
             jump();
@@ -110,16 +110,24 @@ namespace EthanTheHero
             if (isSuperSpeedActive && Time.time >= superSpeedEndTime)
             {
                 isSuperSpeedActive = false;
+                
             }
 
+            // Check if high jump duration is over
             if (isHighJumpActive && Time.time >= highJumpEndTime)
             {
                 isHighJumpActive = false;
+                
             }
-        }
-      
+           
+            
+          
 
-		void FixedUpdate()
+
+        }
+
+
+        void FixedUpdate()
 		{
 			if (isDashing || wallJump || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") || myAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack03"))
 				return;
@@ -214,7 +222,7 @@ namespace EthanTheHero
             if (jumpButtonPressed && grounded)
             {
                 isJumping = true;
-                myBody.linearVelocity = new Vector2(myBody.linearVelocity.x, data.jumpHeight);
+                myBody.linearVelocity = new Vector2(myBody.linearVelocity.x, jumpForce);
             }
         }
         #endregion
@@ -275,6 +283,9 @@ namespace EthanTheHero
         {
             isSuperSpeedActive = true;
             superSpeedEndTime = Time.time + superSpeedDuration;
+            //Debug.Log("Super Speed Activated: " + superSpeedDuration);
+            //Debug.Log("Super Speed End Time: " + superSpeedEndTime);
+            //Debug.Log("Current Time: " + Time.time);    
         }
 
         public void SetSuperSpeed(bool isActive)

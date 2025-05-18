@@ -110,7 +110,8 @@ public class RPSGame : MonoBehaviour
     {
         if (playerScore > CPUScore)
         {
-            resultText.text = "You won the best of three!";
+            resultText.text = "You won the best of three! +200 Points";
+            PlayerInformation.control.score = PlayerInformation.control.score + 200;
         }
 
         else if (CPUScore > playerScore)

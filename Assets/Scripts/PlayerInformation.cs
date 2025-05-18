@@ -28,7 +28,7 @@ public class PlayerInformation : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             control = this;
-            Debug.Log("PlayerInformation control is set to this instance");
+        //Debug.Log("PlayerInformation control is set to this instance");
         }
         else if (control != this)
         {
@@ -40,26 +40,27 @@ public class PlayerInformation : MonoBehaviour
         currentHealth = maxHealth;
         score = 0;
         level = 1;
-        powerUp = 55;
+        powerUp = 0;
         timeDisplay = "00:00:000";
     }
 
     void Start()
     {
         myAnim = GetComponent<Animator>();
-        
+
         // Respawn the player from the last level
         //RespawnPoint respawnPoint = FindObjectOfType<RespawnPoint>();
-        //if (respawnPoint != null)
-        //{
-        //    PlayerInformation.control.respawnPoint = respawnPoint.transform;
-        //}
-        //else
-        //{
-        //    Debug.LogWarning("No respawn point found in the scene.");
-        //}
-        Respawn();
-        Debug.Log("Respawn on start");
+        if (respawnPoint != null)
+        {
+            Respawn();
+            //Debug.Log("Respawn on start");
+        }
+        else
+        {
+            Debug.LogWarning("No respawn point found in the scene.");
+        }
+           
+        
 
     }
 
@@ -79,27 +80,23 @@ public class PlayerInformation : MonoBehaviour
     }
     // This function is called when the player collects a power-up
     // todo: add a powerUp system
-    private void SetPowerUp(int v)
+    public void SetPowerUp(float powerUpLevel)
     {
-       float randomPower = UnityEngine.Random.Range(0f, v);
-        if (powerUp > 0)
-        {
-            powerUp -= randomPower;
-        }
-        else
-        {
-            powerUp += randomPower;
-        }
-        powerUp = Mathf.Clamp(powerUp, 0, 100);
+       this.powerUp = powerUpLevel;
+        
     }
 
     // Used to check if player has died
     private void CheckHealth() {
         if (currentHealth <= 0 && !isDead) {
             isDead = true;
-            if (score > 0)
+            if (score >= 50)
             {
                 score -= 50;
+            }
+            else
+            {
+                score = 0;
             }
             StartCoroutine(RespawnDelay(1.4f));
         }
@@ -113,14 +110,16 @@ public class PlayerInformation : MonoBehaviour
     }
 
     // Respawning player
-    private void Respawn() {
+    public void Respawn() {
         currentHealth = maxHealth;
 
         if (respawnPoint != null) 
         {
         transform.position = respawnPoint.position;
-            Debug.Log("Player respawned at: " + respawnPoint.position);
+            //Debug.Log("Player respawned at: " + respawnPoint.position);
             isDead = false;
+            isPaused = false;
+            Time.timeScale = 1f;
         }
         else {
             Debug.LogWarning("Need to set respawnPoint");
@@ -167,5 +166,14 @@ public class PlayerInformation : MonoBehaviour
     public void SetScore(int score)
     {
         this.score += score;
+    }
+    public void ResetPlayerInfo()
+    {
+        currentHealth = maxHealth;
+        score = 0;
+        level = 1;
+        powerUp = 0;
+        timeDisplay = "00:00:000";
+        timer = 0;
     }
 }

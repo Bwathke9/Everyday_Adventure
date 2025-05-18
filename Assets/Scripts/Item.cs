@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    bool isCollected = false;
+    
     public AudioClip pickupSound;
     
 
@@ -24,7 +24,7 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            isCollected = true;
+            
 
             // add score to player Adam Nixdorf
             PlayerInformation.control.SetScore(10);

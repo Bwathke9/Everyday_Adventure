@@ -77,9 +77,11 @@ public class SuperSpeedPowerUp : MonoBehaviour
     {
         // If it's a 3D object, disable the renderer to hide it visually
         var renderer = GetComponent<Renderer>();
+        var collider = GetComponent<Collider2D>();
         if (renderer != null)
         {
             renderer.enabled = false;  // This will hide the object visually but keep it active in the scene
+            collider.enabled = false;  // Disable the collider to prevent further interactions
         }
         else
         {
