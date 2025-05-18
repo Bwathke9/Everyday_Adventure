@@ -214,7 +214,7 @@ namespace EthanTheHero
             if (jumpButtonPressed && grounded)
             {
                 isJumping = true;
-                myBody.linearVelocity = new Vector2(myBody.linearVelocity.x, data.jumpHeight);
+                myBody.linearVelocity = new Vector2(myBody.linearVelocity.x, jumpForce);
             }
         }
         #endregion
