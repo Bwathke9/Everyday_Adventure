@@ -119,6 +119,7 @@ public class PlayerInformation : MonoBehaviour
             //Debug.Log("Player respawned at: " + respawnPoint.position);
             isDead = false;
             isPaused = false;
+            Time.timeScale = 1f;
         }
         else {
             Debug.LogWarning("Need to set respawnPoint");
