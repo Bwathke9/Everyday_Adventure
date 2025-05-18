@@ -28,7 +28,7 @@ public class PlayerInformation : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             control = this;
-        Debug.Log("PlayerInformation control is set to this instance");
+        //Debug.Log("PlayerInformation control is set to this instance");
         }
         else if (control != this)
         {
@@ -53,15 +53,13 @@ public class PlayerInformation : MonoBehaviour
         if (respawnPoint != null)
         {
             Respawn();
-            Debug.Log("Respawn on start");
+            //Debug.Log("Respawn on start");
         }
         else
         {
             Debug.LogWarning("No respawn point found in the scene.");
         }
-        
-
-        
+           
         
 
     }
@@ -82,27 +80,23 @@ public class PlayerInformation : MonoBehaviour
     }
     // This function is called when the player collects a power-up
     // todo: add a powerUp system
-    private void SetPowerUp(int v)
+    public void SetPowerUp(float powerUpLevel)
     {
-       float randomPower = UnityEngine.Random.Range(0f, v);
-        if (powerUp > 0)
-        {
-            powerUp -= randomPower;
-        }
-        else
-        {
-            powerUp += randomPower;
-        }
-        powerUp = Mathf.Clamp(powerUp, 0, 100);
+       this.powerUp = powerUpLevel;
+        
     }
 
     // Used to check if player has died
     private void CheckHealth() {
         if (currentHealth <= 0 && !isDead) {
             isDead = true;
-            if (score > 0)
+            if (score >= 50)
             {
                 score -= 50;
+            }
+            else
+            {
+                score = 0;
             }
             StartCoroutine(RespawnDelay(1.4f));
         }
@@ -122,7 +116,7 @@ public class PlayerInformation : MonoBehaviour
         if (respawnPoint != null) 
         {
         transform.position = respawnPoint.position;
-            Debug.Log("Player respawned at: " + respawnPoint.position);
+            //Debug.Log("Player respawned at: " + respawnPoint.position);
             isDead = false;
             isPaused = false;
         }

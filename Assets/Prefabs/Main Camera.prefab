@@ -150,6 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0119728f41d8194dbbb27c8d7d3e00a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowSpeed: 2
-  yOffset: 1
+  FollowSpeed: 3
+  yOffset: 1.5
   view: {fileID: 4890878359582430450, guid: 7a7f4c60d4453b44793aff3ff1de1aea, type: 3}

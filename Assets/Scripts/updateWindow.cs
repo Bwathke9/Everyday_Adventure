@@ -46,7 +46,7 @@ public class updateWindow : MonoBehaviour
 
         updateInfoWindow.style.display = DisplayStyle.Flex; // Show the update info window
 
-        Debug.Log("Displaying update window with text: " + displayText);
+        //Debug.Log("Displaying update window with text: " + displayText);
 
         if (updateLabel == null)
         {
