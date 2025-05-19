@@ -22,6 +22,15 @@ public class MultiAxisPingPong : MonoBehaviour
 
     void Update()
     {
+        if (xAmplitude <= 0 && yAmplitude <= 0)
+        {
+            return; // No movement if both amplitudes are zero or negative
+        }
+        // If xAmplitude is zero or negative, set xSpeed to zero to prevent movement
+        if ( xSpeed <= 0 && ySpeed <=0)
+        {
+            return;// No movement if speed is set to 0
+        }
         // Compute a new x-offset.
         // Mathf.PingPong returns a value between 0 and xAmplitude.
         // Subtracting xAmplitude/2 centers the oscillation around the start position.
@@ -31,6 +40,6 @@ public class MultiAxisPingPong : MonoBehaviour
         float newY = Mathf.PingPong(Time.time * ySpeed, yAmplitude) - yAmplitude / 2f;
 
         // Update the object's position by adding the new offsets to its original position.
-        transform.position = new Vector3(startPosition.x + newX, startPosition.y + newY, startPosition.z);
+        transform.position = new Vector2(startPosition.x + newX, startPosition.y + newY);
     }
 }
