@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2722860159327876929}
   - component: {fileID: -4548809325378595414}
   - component: {fileID: 3002562068313632322}
+  - component: {fileID: -5705777909336903869}
   m_Layer: 0
   m_Name: Kiwi
   m_TagString: Untagged
@@ -297,3 +298,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-5705777909336903869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4353651100614569985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7857a8ce020f67d46850e9494129a133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xSpeed: 1
+  xAmplitude: 2
+  ySpeed: 1
+  yAmplitude: 2

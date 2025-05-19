@@ -13,7 +13,7 @@ public class HighJumpPowerUp : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerMovement = GameObject.FindAnyObjectByType<PlayerMovement>();
+        playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
 
         uiDocument = GameObject.Find("uIMain").GetComponent<UIDocument>();
 
@@ -26,11 +26,11 @@ public class HighJumpPowerUp : MonoBehaviour
 
         var root = uiDocument.rootVisualElement;
 
-        popup = root.Query<VisualElement>("PowerUp_PopUp").First();
+        popup = root.Query<VisualElement>("HighJumpPowerUp_PopUp").First();
 
         if (popup == null)
         {
-            Debug.LogError("Popup element (PowerUp_PopUp) not found in the UI");
+            Debug.LogError("Popup element (HighJumpPowerUp_PopUp) not found in the UI");
         }
     }
     void OnTriggerEnter2D(Collider2D other)

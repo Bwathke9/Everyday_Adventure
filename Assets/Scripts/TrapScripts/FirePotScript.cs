@@ -18,16 +18,13 @@ public class FirePotScript : MonoBehaviour
     private float timer = 0f;
     private float stateTimer = 0f;
     private bool isActive = false;
-    private Collider2D physicalCollider;
     private Collider2D triggerCollider;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        physicalCollider = GetComponent<Collider2D>();
         triggerCollider = gameObject.AddComponent<BoxCollider2D>();
         triggerCollider.isTrigger = true;
-        triggerCollider.enabled = false; 
 
         Invoke("StartFirePot", initialDelay);
     }
@@ -66,12 +63,7 @@ public class FirePotScript : MonoBehaviour
 
     private void ChangeSprite()
     {
-        currentActiveIndex++;
-
-        if (currentActiveIndex >= activeSprites.Length)
-        {
-            currentActiveIndex = 0;
-        }
+        currentActiveIndex = (currentActiveIndex + 1) % activeSprites.Length;
         spriteRenderer.sprite = activeSprites[currentActiveIndex];
     }
 
@@ -82,13 +74,10 @@ public class FirePotScript : MonoBehaviour
         if (isActive)
         {
             spriteRenderer.sprite = activeSprites[currentActiveIndex];
-            triggerCollider.enabled = true;
         }
         else
         {
-
             spriteRenderer.sprite = offSprite;
-            triggerCollider.enabled = false;
         }
         timer = 0f;
         stateTimer = 0f;
@@ -99,6 +88,14 @@ public class FirePotScript : MonoBehaviour
         if (isActive && collision.CompareTag("Player")) 
         {
             PlayerInformation.control.TakeDamage(damage);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (isActive && collision.CompareTag("Player"))
+        {           
+                PlayerInformation.control.TakeDamage(damage/100);            
         }
     }
 }

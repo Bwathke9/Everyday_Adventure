@@ -1,5 +1,7 @@
-using EthanTheHero;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
+using EthanTheHero;
 
 public class HighJumpScript : MonoBehaviour
 {
@@ -7,13 +9,13 @@ public class HighJumpScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerMovement = GameObject.FindAnyObjectByType<PlayerMovement>();
+        playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerMovement != null && Input.GetKeyDown(KeyCode.RightShift))
+        if (playerMovement != null && Input.GetKeyDown(KeyCode.Space))
         {
             playerMovement.ActivateHighJump();
         }

@@ -131,12 +131,11 @@ public class PlayerInformation : MonoBehaviour
     {
         float minutes = Mathf.FloorToInt(timer / 60);
         float seconds = Mathf.FloorToInt(timer % 60);
-        float milliseconds = (timer * 1000) % 1000;
-        int secondsNow = Mathf.FloorToInt(seconds);
+        int milliseconds = Mathf.FloorToInt((timer - Mathf.Floor(timer)) * 100);
+        string millisecondsFormatted = milliseconds.ToString("D2");
        
-        string timeDisplay = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        string timeDisplay = string.Format("{0:00}:{1:00}:{2}", minutes, seconds, milliseconds);
         return timeDisplay;
-
     }
     // This function is called when the player is healed
     public void Heal()

@@ -27,27 +27,14 @@ public class GameEnd : MonoBehaviour
     {
         string[] timeParts = originalTime.Split(':');
 
-        if (timeParts.Length >= 2)
+        if (timeParts.Length == 3)
         {
             string minutes = timeParts[0].PadLeft(2, '0');
-            string[] secondParts = timeParts[1].Split('.');
-            string seconds = secondParts[0].PadLeft(2, '0');
-            string milliseconds = "00";
+            string seconds = timeParts[1].PadLeft(2, '0');
+            string milliseconds = timeParts[2].PadLeft(2, '0');
 
-            if (secondParts.Length > 1)
-            {
-                milliseconds = secondParts[1];
-
-                if (milliseconds.Length > 2)
-                {
-                    milliseconds = milliseconds.Substring(0, 2);
-                }
-                else if (milliseconds.Length < 2)
-                {
-                    milliseconds = milliseconds.PadRight(2, '0');
-                }
-            }
             string formattedTime = $"{minutes}:{seconds}.{milliseconds}";
+            Debug.Log($"Formatted Time for Submission: {formattedTime}");
 
             return formattedTime;
         }
