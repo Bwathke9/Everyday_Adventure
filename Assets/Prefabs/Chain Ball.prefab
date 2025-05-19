@@ -301,7 +301,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 6933401347142290023}
   - component: {fileID: 7631332207106389214}
   - component: {fileID: 1187615407620264948}
-  - component: {fileID: 1354656628306646917}
+  - component: {fileID: 2983227415204362995}
   m_Layer: 0
   m_Name: Spiked Ball
   m_TagString: Untagged
@@ -743,8 +743,8 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.2
---- !u!114 &1354656628306646917
+  m_Radius: 0.144
+--- !u!114 &2983227415204362995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -753,10 +753,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5251268343413545451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 097343f10d01c6d4a88c9f6486099c62, type: 3}
+  m_Script: {fileID: 11500000, guid: f68dddfd58594044db9a254bbe2f2fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbitSpeed: 0
+  damageAmount: 15
 --- !u!1 &8213572163496531124
 GameObject:
   m_ObjectHideFlags: 0
