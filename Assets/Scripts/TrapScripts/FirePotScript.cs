@@ -90,4 +90,12 @@ public class FirePotScript : MonoBehaviour
             PlayerInformation.control.TakeDamage(damage);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (isActive && collision.CompareTag("Player"))
+        {           
+                PlayerInformation.control.TakeDamage(damage/100);            
+        }
+    }
 }
