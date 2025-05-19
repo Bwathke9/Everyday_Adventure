@@ -20,13 +20,13 @@ public class OrbitPoint : MonoBehaviour
     }
     // add damage to player Adam Nixdorf
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-      if (collision.CompareTag("Player")) 
-      {
-          PlayerInformation.control.TakeDamage(25);
-      }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //  if (collision.CompareTag("Player")) 
+    //  {
+    //      PlayerInformation.control.TakeDamage(15);
+    //  }
+    //}
 }
 
 
