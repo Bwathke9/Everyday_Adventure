@@ -36,6 +36,12 @@ public class GameDataController : MonoBehaviour
         StartCoroutine(LoadTopScores());
     }
 
+    public void GetTopShortestTimes() 
+    {
+
+        StartCoroutine(LoadTopShortestTimes());
+    }
+
     // Create hashed key
     private string CreateHash(string data)
     {
@@ -176,6 +182,30 @@ public class GameDataController : MonoBehaviour
         }
     }
 
+    // Retrieve 10 shortest times
+    private IEnumerator LoadTopShortestTimes() 
+    {
+        string apiKey = CreateHash(key + "level_three");
+        string apiUrlWithEndpoint = apiUrl + "?endpoint=topShortestTimes&apiKey=" + apiKey;
+
+        using (UnityWebRequest www = UnityWebRequest.Get(apiUrlWithEndpoint)) 
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success) 
+            {
+                Debug.LogError("Error: " + www.error);
+                OnGetGameDataResult?.Invoke(false, www.error);
+            } 
+            else 
+            {
+                Debug.Log("Received: " + www.downloadHandler.text);
+                OnGetGameDataResult?.Invoke(true, www.downloadHandler.text);
+                DisplayTopScores(www.downloadHandler.text);
+            }
+        }
+    }
+
     public void SubmitPlayerStats()
     {
         string level = "level_three";
@@ -186,5 +216,15 @@ public class GameDataController : MonoBehaviour
         string initials = "AAA";
 
         SubmitGameData(level, endTime, levelTime, levelScore, questionsAnswered, initials);
+    }
+
+    public void OnHighScoresButtonPressed()
+    {
+        GetTopScores();
+    }
+
+    public void OnShortestTimesButtonPressed()
+    {
+        GetTopShortestTimes();
     }
 }
