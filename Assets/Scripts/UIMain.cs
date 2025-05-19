@@ -47,6 +47,8 @@ public class UIMain : MonoBehaviour
 
     void Start()
     {
+        SetLevelFromSceneName(); // <- new line added
+
         uIDocument = GetComponent<UIDocument>();
         leftVisualElement = uIDocument.rootVisualElement;
 
@@ -54,7 +56,7 @@ public class UIMain : MonoBehaviour
         powerUpPopup = uIDocument.rootVisualElement.Q<VisualElement>(powerUpPopupName);
         if (powerUpPopup != null)
         {
-            powerUpPopup.style.display = DisplayStyle.None; // Ensure popup is initially hidden
+            powerUpPopup.style.display = DisplayStyle.None;
         }
         else
         {
@@ -64,7 +66,7 @@ public class UIMain : MonoBehaviour
         // Initialize other UI elements
         healthDisplay = leftVisualElement.Q<ProgressBar>(healthDisplayName);
         powerUpDisplay = leftVisualElement.Q<ProgressBar>(powerUpLabelName);
-        
+
         if (healthDisplay != null)
         {
             healthDisplay.value = PlayerInformation.control.currentHealth;
@@ -97,7 +99,7 @@ public class UIMain : MonoBehaviour
         pauseWindow.style.display = DisplayStyle.None;
         pauseButton.clicked += TogglePopUp;
         resumeButton.clicked += TogglePopUp;
-        
+
         mainMenuButton.clicked += () =>
         {
             SceneLoader.instance.ResetGame();
@@ -117,55 +119,58 @@ public class UIMain : MonoBehaviour
         timerDisplay.Add(timerOut);
     }
 
-    // Modify this method to show the popup when the power-up is triggered
+    private void SetLevelFromSceneName()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName.StartsWith("Level"))
+        {
+            string levelNumStr = sceneName.Substring(5);
+            if (int.TryParse(levelNumStr, out int levelNum))
+            {
+                PlayerInformation.control.level = levelNum;
+            }
+            else
+            {
+                Debug.LogWarning("Could not parse level number from scene name: " + sceneName);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Scene name doesn't start with 'Level': " + sceneName);
+        }
+    }
+
     public void ShowPowerUpPopup()
     {
         if (powerUpPopup != null)
         {
-            powerUpPopup.style.display = DisplayStyle.Flex; // Show the PowerUp popup
-            StartCoroutine(HidePowerUpPopupAfterDelay(5f)); // Hide after 5 seconds
+            powerUpPopup.style.display = DisplayStyle.Flex;
+            StartCoroutine(HidePowerUpPopupAfterDelay(5f));
         }
     }
 
-    // Coroutine to hide the PowerUp Popup after 5 seconds
     private IEnumerator HidePowerUpPopupAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         if (powerUpPopup != null)
         {
-            powerUpPopup.style.display = DisplayStyle.None; // Hide the PowerUp popup
+            powerUpPopup.style.display = DisplayStyle.None;
         }
     }
 
-    // Trigger Power-Up Popup when picked up
     public void OnPowerUpPickedUp()
     {
-        // If power-up picked up successfully, show the popup
-        ShowPowerUpPopup(); 
-
-        // Optionally, you can add additional logic to destroy or deactivate the power-up object here.
-        // For example:
-        // Destroy(powerUpObject); // If you need to destroy the power-up object
-        // Or disable the power-up visually if needed (e.g., deactivate the power-up object in the scene).
+        ShowPowerUpPopup();
         StartCoroutine(DestroyPowerUpAfterPopup());
     }
 
-    // Coroutine to destroy the power-up after the popup is hidden
     private IEnumerator DestroyPowerUpAfterPopup()
     {
-        // Wait for the popup to disappear
         yield return new WaitForSeconds(5f);
-
-        // Destroy or deactivate the power-up object
-        // Destroy(powerUpObject); // Example: Destroy the power-up after it has been collected
-        // Or disable the power-up object:
-        // powerUpObject.SetActive(false);
-
-        // After the power-up is handled, you can also hide the popup manually if needed
         powerUpPopup.style.display = DisplayStyle.None;
     }
 
-    // Pause functionality
     private void TogglePopUp()
     {
         bool isVisible = pauseWindow.style.display == DisplayStyle.Flex;
@@ -179,7 +184,7 @@ public class UIMain : MonoBehaviour
         {
             if (healthDisplay != null)
             {
-                healthDisplay.value = PlayerInformation.control.currentHealth;                
+                healthDisplay.value = PlayerInformation.control.currentHealth;
             }
 
             if (powerUpDisplay != null)
@@ -189,6 +194,7 @@ public class UIMain : MonoBehaviour
 
             timerOut.text = " " + PlayerInformation.control.timeDisplay;
         }
+
         scoreOut.text = " " + PlayerInformation.control.score;
         timerOut.text = " " + PlayerInformation.control.timeDisplay;
     }
@@ -200,5 +206,5 @@ public class UIMain : MonoBehaviour
         #else
         Application.Quit();
         #endif
-    }  
+    }
 }
