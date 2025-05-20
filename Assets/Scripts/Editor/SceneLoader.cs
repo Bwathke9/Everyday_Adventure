@@ -71,7 +71,7 @@ public class SceneLoader : MonoBehaviour
             PlayerInformation.control.isPaused = false;
             Time.timeScale = 1;
             PlayerInformation.control.transform.position = PlayerInformation.control.respawnPoint.position;
-            UnityEditor.EditorApplication.isPlaying = true;
+            //UnityEditor.EditorApplication.isPlaying = true;
         }       
         
     }
