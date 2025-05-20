@@ -61,10 +61,26 @@ public class TTTGame : MonoBehaviour
 
     private IEnumerator CPUMoveAfterDelay(float delay)
     {
-      yield return new WaitForSeconds(delay);
-      MakeCPUMove();
-      SetButtonsInteractable(true);
-      resultText.text = "Make your move!";
+        yield return new WaitForSeconds(delay);
+        MakeCPUMove();
+        
+        if (CheckForWin())
+        {
+            resultText.text = "You have lost!";
+            SetButtonsInteractable(false);
+            ShowContinueButton();
+        }
+        else if (CheckForDraw())
+        {
+            resultText.text = "It's a tie!";
+            SetButtonsInteractable(false);
+            ShowContinueButton();
+        }
+        else
+        {
+            SetButtonsInteractable(true); 
+            resultText.text = "Make your move!";
+        }
     }
 
     // CPU picks random open space
