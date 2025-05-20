@@ -8,7 +8,7 @@ public class StartDisplay : MonoBehaviour
         "when he is hanging onto the edge. Collect fruit to increase your score but " +
         "watch out for obstacles along the way. Watch for hearts, they will give you a chance for you to " +
         "restore your health. Levels 1&2 will have a mini game at the end for a chance to earn Bonus points. " +
-        "Enter your initials at the end of level 3 and see if you make our to 10 leader board. Compare your time " +
+        "Enter your initials at the end of level 3 and see if you make our top 10 leader board. Compare your time " +
         "and score with the top 10 and see where you stack up.";
 
     private void OnTriggerEnter2D(Collider2D collision)
